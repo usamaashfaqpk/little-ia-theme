@@ -27,6 +27,15 @@
     aria-hidden="{% if block_index == 0 %}false{% else %}true{% endif %}"
   >
     <p class="announcement-bar__text">
+      {% if block.settings.icon_announcement %}
+        <img
+          src="{{ block.settings.icon_announcement | image_url: width: 16 }}"
+          alt=""
+          width="16"
+          height="16"
+          class="announcement-icon"
+        >
+      {% endif %}
       {{ block.settings.text }}
     </p>
 
