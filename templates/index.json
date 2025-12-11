@@ -32,7 +32,7 @@
             "gradient_direction": "to top",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 100,
+            "padding-inline-start": 50,
             "padding-inline-end": 0
           },
           "blocks": {
@@ -139,10 +139,33 @@
                 "text_twVKAm",
                 "button_M7F3r6"
               ]
+            },
+            "image_xPYeL6": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "group_Xma4wk"
+            "group_Xma4wk",
+            "image_xPYeL6"
           ]
         }
       },
