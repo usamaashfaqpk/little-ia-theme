@@ -233,6 +233,27 @@
     },
     {
       "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "600",
+          "label": "Strong"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        }
+      ],
+      "default": "400",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
       "id": "letter_spacing",
       "label": "t:settings.letter_spacing",
       "options": [
