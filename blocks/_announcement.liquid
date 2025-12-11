@@ -26,7 +26,7 @@
     {{ block.shopify_attributes }}
     aria-hidden="{% if block_index == 0 %}false{% else %}true{% endif %}"
   >
-    <p class="announcement-bar__text">
+    <p class="announcement-bar__text display-flex">
       {% if block.settings.icon_announcement %}
         <img
           src="{{ block.settings.icon_announcement | image_url: width: 16 }}"
@@ -54,10 +54,13 @@
 
 {% stylesheet %}
   .text-block {
-    display: flex;
-    justify-content: center;
     width: var(--width);
     max-width: 100%;
+  }
+
+  .display-flex {
+    display: flex;
+    justify-content: center;
   }
 
   .announcement-icon {
