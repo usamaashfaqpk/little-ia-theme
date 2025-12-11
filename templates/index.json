@@ -145,7 +145,7 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "shopify://shop_images/Frame_1400008471_1.png",
+                "image": "shopify://shop_images/Rectangle_3.png",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -170,7 +170,7 @@
             "image_xPYeL6"
           ]
         },
-        "slide_Aw9tc4": {
+        "slide_t4DDVn": {
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
@@ -194,7 +194,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_bYa78i": {
+            "group_c6Wcw9": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
@@ -234,7 +234,7 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "jumbo_text_9Pq43p": {
+                "jumbo_text_mXnygA": {
                   "type": "jumbo-text",
                   "name": "t:names.jumbo_text",
                   "settings": {
@@ -249,17 +249,17 @@
                   },
                   "blocks": {}
                 },
-                "text_8z6DqL": {
+                "text_pxAkWc": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+                    "text": "<p>Thoughtfully crafted  personalised  essentials that  become keepsakes for life.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "rte",
+                    "type_preset": "custom",
                     "font": "var(--font-body--family)",
-                    "font_size": "1rem",
+                    "font_size": "1.125rem",
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
@@ -276,7 +276,7 @@
                   },
                   "blocks": {}
                 },
-                "button_T8cQHb": {
+                "button_d7g3gA": {
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
@@ -294,16 +294,16 @@
                 }
               },
               "block_order": [
-                "jumbo_text_9Pq43p",
-                "text_8z6DqL",
-                "button_T8cQHb"
+                "jumbo_text_mXnygA",
+                "text_pxAkWc",
+                "button_d7g3gA"
               ]
             },
-            "image_Jjthmk": {
+            "image_MhMwHk": {
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "shopify://shop_images/Frame_1400008471_1.png",
+                "image": "shopify://shop_images/Rectangle_3.png",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -324,11 +324,11 @@
             }
           },
           "block_order": [
-            "group_bYa78i",
-            "image_Jjthmk"
+            "group_c6Wcw9",
+            "image_MhMwHk"
           ]
         },
-        "slide_mgNjaB": {
+        "slide_NmfFkp": {
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
@@ -352,7 +352,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_3wFyX8": {
+            "group_b3tEYQ": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
@@ -392,7 +392,7 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "jumbo_text_HipGPD": {
+                "jumbo_text_WpEcLd": {
                   "type": "jumbo-text",
                   "name": "t:names.jumbo_text",
                   "settings": {
@@ -407,17 +407,17 @@
                   },
                   "blocks": {}
                 },
-                "text_EafwYP": {
+                "text_tBzfEq": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+                    "text": "<p>Thoughtfully crafted  personalised  essentials that  become keepsakes for life.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "rte",
+                    "type_preset": "custom",
                     "font": "var(--font-body--family)",
-                    "font_size": "1rem",
+                    "font_size": "1.125rem",
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
@@ -434,7 +434,7 @@
                   },
                   "blocks": {}
                 },
-                "button_aWc6yQ": {
+                "button_TgtMky": {
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
@@ -452,16 +452,16 @@
                 }
               },
               "block_order": [
-                "jumbo_text_HipGPD",
-                "text_EafwYP",
-                "button_aWc6yQ"
+                "jumbo_text_WpEcLd",
+                "text_tBzfEq",
+                "button_TgtMky"
               ]
             },
-            "image_7ipMh7": {
+            "image_h4eLWE": {
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "shopify://shop_images/Frame_1400008471_1.png",
+                "image": "shopify://shop_images/Rectangle_3.png",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -482,15 +482,15 @@
             }
           },
           "block_order": [
-            "group_3wFyX8",
-            "image_7ipMh7"
+            "group_b3tEYQ",
+            "image_h4eLWE"
           ]
         }
       },
       "block_order": [
         "slide_EdwJch",
-        "slide_Aw9tc4",
-        "slide_mgNjaB"
+        "slide_t4DDVn",
+        "slide_NmfFkp"
       ],
       "name": "t:names.slideshow",
       "settings": {
