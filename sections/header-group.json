@@ -18,7 +18,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "Shop our latest arrivals!",
+            "text": "Same day delivery, order before 11 AM",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
@@ -32,7 +32,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "Shop our latest arrivals!",
+            "text": "Complimentary personalization on all times",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
