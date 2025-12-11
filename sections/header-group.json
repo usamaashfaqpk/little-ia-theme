@@ -19,7 +19,7 @@
           "name": "t:names.announcement",
           "settings": {
             "text": "Free delivery on orders over AED 450",
-            "icon_announcement": "shopify://shop_images/Frame_1400008471_1.png",
+            "icon_announcement": "shopify://shop_images/Truck-Duotone--Streamline-Phosphor.png",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
@@ -34,6 +34,7 @@
           "name": "t:names.announcement",
           "settings": {
             "text": "Same day delivery, order before 11 AM",
+            "icon_announcement": "shopify://shop_images/Frame_1437254988.png",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
@@ -48,6 +49,7 @@
           "name": "t:names.announcement",
           "settings": {
             "text": "Complimentary personalization on all times",
+            "icon_announcement": "shopify://shop_images/image_1.png",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
@@ -61,6 +63,7 @@
           "type": "_announcement",
           "settings": {
             "text": "Complimentary packaging with gift sets",
+            "icon_announcement": "shopify://shop_images/image.png",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
