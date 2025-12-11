@@ -32,15 +32,6 @@
       {% render 'slideshow-arrows', icon_style: 'chevron' %}
     {% endif %}
 
-    {% if block.settings.icon_announcement %}
-      <img
-        src="{{ block.settings.icon_announcement | image_url: width: 16 }}"
-        alt=""
-        width="16"
-        height="16"
-        class="announcement-icon"
-      >
-    {% endif %}
     <div class="announcement-bar__slides">
       {% content_for 'blocks' %}
     </div>
