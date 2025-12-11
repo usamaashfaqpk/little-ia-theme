@@ -14,6 +14,20 @@
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
+        "announcement_4g8n9E": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "Free delivery on orders over AED 450",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "announcement_6qcw8V": {
           "type": "_announcement",
           "name": "t:names.announcement",
@@ -57,6 +71,7 @@
         }
       },
       "block_order": [
+        "announcement_4g8n9E",
         "announcement_6qcw8V",
         "announcement_kn4nkH",
         "announcement_BxgCk9"
