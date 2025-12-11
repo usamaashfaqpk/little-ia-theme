@@ -116,11 +116,28 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "button_M7F3r6": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Shop baby essentials",
+                    "link": "shopify://collections/all",
+                    "open_in_new_tab": false,
+                    "style_class": "button",
+                    "text_case": "uppercase",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "jumbo_text_zwPKQD",
-                "text_twVKAm"
+                "text_twVKAm",
+                "button_M7F3r6"
               ]
             }
           },
