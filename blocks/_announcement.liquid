@@ -28,13 +28,14 @@
   >
     <p class="announcement-bar__text">
       {% if block.settings.icon_announcement %}
-        <img
+        {% comment %} <img
           src="{{ block.settings.icon_announcement | image_url: width: 16 }}"
           alt=""
           width="16"
           height="16"
           class="announcement-icon"
-        >
+        > {% endcomment %}
+          {{ block.settings.icon_announcement }}
       {% endif %}
       {{ block.settings.text }}
     </p>
