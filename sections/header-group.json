@@ -19,6 +19,7 @@
           "name": "t:names.announcement",
           "settings": {
             "text": "Free delivery on orders over AED 450",
+            "icon_announcement": "shopify://shop_images/Frame_1400008471_1.png",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
