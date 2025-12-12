@@ -873,7 +873,61 @@
     "hero_aLq6pa": {
       "type": "hero",
       "blocks": {
-        "group_FqYj73": {
+        "text_AzfKk4": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Birthday & Gifts</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-accent--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "font_weight": "400",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 10,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_WEQi6G": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Thoughtful gift sets and personalised favourites, ready to wrap, treasure and make their day extra special.</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h5",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "font_weight": "400",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 10,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_ckg4QD": {
           "type": "group",
           "name": "t:names.group",
           "settings": {
@@ -884,10 +938,10 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 6,
-            "width": "custom",
+            "gap": 12,
+            "width": "fit-content",
             "custom_width": 100,
-            "width_mobile": "fill",
+            "width_mobile": "fit-content",
             "custom_width_mobile": 100,
             "height": "fit",
             "custom_height": 100,
@@ -901,7 +955,7 @@
             "border_opacity": 100,
             "border_radius": 0,
             "toggle_overlay": false,
-            "overlay_color": "#ffffff",
+            "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
             "link": "",
@@ -913,61 +967,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "text_w8cECm": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Birthday & Gifts</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h2",
-                "font": "var(--font-accent--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "font_weight": "400",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 10,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_LfKkwE": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p>Thoughtful gift sets and personalised favourites, ready to wrap, treasure and make their day extra special.</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h5",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "font_weight": "400",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 10,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "button_mCqPMR": {
+            "button_EQFVNX": {
               "type": "button",
               "name": "t:names.button",
               "settings": {
@@ -985,14 +985,14 @@
             }
           },
           "block_order": [
-            "text_w8cECm",
-            "text_LfKkwE",
-            "button_mCqPMR"
+            "button_EQFVNX"
           ]
         }
       },
       "block_order": [
-        "group_FqYj73"
+        "text_AzfKk4",
+        "text_WEQi6G",
+        "group_ckg4QD"
       ],
       "name": "t:names.hero_bottom_aligned",
       "settings": {
@@ -1010,7 +1010,7 @@
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "flex-end",
         "gap": 16,
         "section_width": "page-width",
