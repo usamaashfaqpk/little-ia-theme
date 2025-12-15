@@ -653,10 +653,19 @@
             "collection": "hydrogen",
             "button_label": "Shop this age"
           }
+        },
+        "tab_Kxmqzp": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "New Born",
+            "collection": "automated-collection",
+            "button_label": "Shop All New Born"
+          }
         }
       },
       "block_order": [
-        "tab_FaRLj8"
+        "tab_FaRLj8",
+        "tab_Kxmqzp"
       ],
       "name": "Shop Our Best Seller – Tabs",
       "settings": {
