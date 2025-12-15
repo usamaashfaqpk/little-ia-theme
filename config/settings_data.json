@@ -72,6 +72,7 @@
     "currency_code_enabled_product_pages": false,
     "currency_code_enabled_product_cards": false,
     "currency_code_enabled_cart_items": false,
+    "mobile_quick_add": true,
     "product_corner_radius": 0,
     "card_corner_radius": 4,
     "show_variant_image": false,
@@ -82,6 +83,21 @@
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
     "content_for_index": [],
+    "blocks": {
+      "2950567246721570496": {
+        "type": "shopify://apps/tabs-studio/blocks/global_embed_block/19980fb9-f2ca-4ada-ad36-c0364c3318b8",
+        "disabled": false,
+        "settings": {
+          "location": "auto",
+          "init_type": "default",
+          "init_selector": "",
+          "replace_contents": false,
+          "init_timing": "immediate",
+          "custom_script": "",
+          "custom_style": ""
+        }
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
