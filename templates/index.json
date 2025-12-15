@@ -716,7 +716,7 @@
             "card_width_mobile": 170,
             "card_border_radius": 0,
             "gap": 20,
-            "image_ratio": 150,
+            "image_ratio": 100,
             "overlay_opacity": 0,
             "show_navigation": true,
             "show_arrows": true,
