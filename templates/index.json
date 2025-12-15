@@ -650,7 +650,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "All",
-            "collection": "hydrogen",
+            "collection": "all",
             "button_label": "Shop this age"
           }
         },
