@@ -27,9 +27,11 @@
       {% endfor %}
     </div>
 
-    <div class="collection-info__controls collection-info__controls--{{ block_settings.navigation }}">
-      {%- render 'slideshow-controls', icon_style: block_settings.icons_style, shape: block_settings.background_style -%}
-    </div>
+   <div
+      class="collection-info collection-info--{{ block_settings.placement }} color-{{ block_settings.color_scheme }}"
+      style="{% render 'spacing-style', settings: block_settings %} {% if block_settings.icons_style contains 'large' %} --slideshow-icon-padding: 0px{% endif %}"
+      {{ block.shopify_attributes }}
+    >
     <!-- Panels -->
     <div class="shop-by-age__panels">
       {% for block in section.blocks %}
@@ -64,6 +66,9 @@
           {% endif %}
         </div>
       {% endfor %}
+    </div>
+    <div class="collection-info__controls collection-info__controls--{{ block_settings.navigation }}">
+      {%- render 'slideshow-controls', icon_style: block_settings.icons_style, shape: block_settings.background_style -%}
     </div>
   </div>
 </section>
