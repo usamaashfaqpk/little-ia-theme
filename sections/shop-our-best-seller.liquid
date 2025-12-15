@@ -1,0 +1,219 @@
+{% comment %}
+  SECTION: Shop by Age – Collection Tabs
+  File: sections/shop-by-age-tabs.liquid
+{% endcomment %}
+
+<section class="shop-by-age">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="shop-by-age__heading font-sacramento">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p class="shop-by-age__subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    <!-- Tabs -->
+    <div class="shop-by-age__tabs" role="tablist">
+      {% for block in section.blocks %}
+        <button
+          class="shop-by-age__tab{% if forloop.first %} is-active{% endif %}"
+          data-tab="tab-{{ block.id }}"
+          role="tab"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.tab_title }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- Panels -->
+    <div class="shop-by-age__panels">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+
+        <div
+          class="shop-by-age__panel{% if forloop.first %} is-active{% endif %}"
+          id="tab-{{ block.id }}"
+          role="tabpanel"
+        >
+          {% if collection != blank %}
+            <div class="shop-by-age__grid">
+              {% for product in collection.products limit: section.settings.products_limit %}
+                <div class="shop-by-age__item">
+                  <a href="{{ product.url }}" class="shop-by-age__image">
+                    {{ product.featured_image | image_url: width: 600 | image_tag }}
+                    <span class="shop-by-age__label">{{ product.title }}</span>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+
+            {% if block.settings.button_label != empty %}
+              <div class="shop-by-age__cta">
+                <a href="{{ collection.url }}" class="button">
+                  {{ block.settings.button_label | default: section.settings.default_button_label }}
+                </a>
+              </div>
+            {% endif %}
+          {% else %}
+            <p>No collection selected.</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .shop-by-age {
+    padding: 60px 0;
+    text-align: center;
+  }
+  .shop-by-age__heading {
+    font-size: 2.375rem;
+    color: #7295bb;
+    font-family: 'Sacramento';
+  }
+  .shop-by-age__subheading {
+    margin-bottom: 30px;
+    font-size: 2.375rem;
+  }
+  .shop-by-age__tabs {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+  .shop-by-age__tab {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+  }
+  .shop-by-age__tab.is-active {
+    border-color: currentColor;
+    font-weight: 600;
+  }
+  .shop-by-age__panel {
+    display: none;
+  }
+  .shop-by-age__panel.is-active {
+    display: block;
+  }
+  .shop-by-age__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .shop-by-age__image {
+    position: relative;
+    display: block;
+  }
+  .shop-by-age__label {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: #fff;
+    font-size: 22px;
+    pointer-events: none;
+    text-align: center;
+    width: 100%;
+  }
+  .shop-by-age__cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  @media (max-width: 768px) {
+    .shop-by-age__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const tabs = document.querySelectorAll('.shop-by-age__tab');
+    const panels = document.querySelectorAll('.shop-by-age__panel');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.classList.remove('is-active'));
+        panels.forEach((p) => p.classList.remove('is-active'));
+
+        tab.classList.add('is-active');
+        document.getElementById(tab.dataset.tab).classList.add('is-active');
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Shop by Age – Tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Age"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Choose the perfect age group"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products per tab",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "default_button_label",
+      "label": "Default button label",
+      "default": "Shop all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title",
+          "default": "3–5 Years"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop this age"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Age – Tabs"
+    }
+  ]
+}
+{% endschema %}
