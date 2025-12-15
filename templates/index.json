@@ -907,7 +907,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Personalised toperfection</p>",
+            "text": "<p>Personalised to perfection</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
