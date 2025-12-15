@@ -2286,7 +2286,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Travelling (or Not Travelling)  with Kids</p>",
+                    "text": "<p>Floral</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2296,7 +2296,7 @@
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": false,
@@ -2308,28 +2308,11 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "button_LzHJ4j": {
-                  "type": "button",
-                  "name": "t:names.button",
-                  "settings": {
-                    "label": "Read Now",
-                    "link": "shopify://blogs/news",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "text_case": "capitalize",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "ai_gen_block_a51962f_AidMnf",
-                "text_yCgGRY",
-                "button_LzHJ4j"
+                "text_yCgGRY"
               ]
             },
             "group_zrEbAh": {
@@ -2383,7 +2366,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Travelling (or Not Travelling)  with Kids</p>",
+                    "text": "<p>Seaworld</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2393,7 +2376,7 @@
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": false,
@@ -2405,28 +2388,11 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "button_Lwg7kC": {
-                  "type": "button",
-                  "name": "t:names.button",
-                  "settings": {
-                    "label": "Read Now",
-                    "link": "shopify://blogs/news",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "text_case": "capitalize",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "ai_gen_block_a51962f_d37PjQ",
-                "text_bi4UFi",
-                "button_Lwg7kC"
+                "text_bi4UFi"
               ]
             },
             "group_cryPPP": {
@@ -2480,7 +2446,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Travelling (or Not Travelling)  with Kids</p>",
+                    "text": "<p>Football</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2490,7 +2456,7 @@
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": false,
@@ -2502,28 +2468,11 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "button_g3Kbyr": {
-                  "type": "button",
-                  "name": "t:names.button",
-                  "settings": {
-                    "label": "Read Now",
-                    "link": "shopify://blogs/news",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "text_case": "capitalize",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "ai_gen_block_a51962f_Qyqhi8",
-                "text_A74abq",
-                "button_g3Kbyr"
+                "text_A74abq"
               ]
             },
             "group_YxbRaA": {
@@ -2577,7 +2526,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Travelling (or Not Travelling)  with Kids</p>",
+                    "text": "<p>mermaid</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2587,7 +2536,7 @@
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": false,
@@ -2599,28 +2548,11 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "button_GLc4b4": {
-                  "type": "button",
-                  "name": "t:names.button",
-                  "settings": {
-                    "label": "Read Now",
-                    "link": "shopify://blogs/news",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "text_case": "capitalize",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "ai_gen_block_a51962f_rCMeLq",
-                "text_3MnCAj",
-                "button_GLc4b4"
+                "text_3MnCAj"
               ]
             },
             "group_kpBJ9X": {
@@ -2674,7 +2606,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Travelling (or Not Travelling)  with Kids</p>",
+                    "text": "<p>PAW PATROL</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2684,7 +2616,7 @@
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": false,
@@ -2696,28 +2628,11 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "button_nfdMGL": {
-                  "type": "button",
-                  "name": "t:names.button",
-                  "settings": {
-                    "label": "Read Now",
-                    "link": "shopify://blogs/news",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "text_case": "capitalize",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "ai_gen_block_a51962f_BcTF6H",
-                "text_emTFHq",
-                "button_nfdMGL"
+                "text_emTFHq"
               ]
             },
             "group_JeNfNV": {
@@ -2771,7 +2686,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Travelling (or Not Travelling)  with Kids</p>",
+                    "text": "<p>unicorn</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2781,7 +2696,7 @@
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": false,
@@ -2793,28 +2708,11 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "button_eB8HUx": {
-                  "type": "button",
-                  "name": "t:names.button",
-                  "settings": {
-                    "label": "Read Now",
-                    "link": "shopify://blogs/news",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "text_case": "capitalize",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "ai_gen_block_a51962f_FxPeAA",
-                "text_79krnj",
-                "button_eB8HUx"
+                "text_79krnj"
               ]
             }
           },
