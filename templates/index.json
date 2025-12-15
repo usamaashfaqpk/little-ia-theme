@@ -783,7 +783,7 @@
           "settings": {
             "icon": "price_tag",
             "image_upload": "shopify://shop_images/Ellipse_3043.png",
-            "width": 12,
+            "width": 6,
             "link": "",
             "open_in_new_tab": false
           },
@@ -828,6 +828,18 @@
           },
           "blocks": {}
         },
+        "icon_mptNQb": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/Ellipse_3043.png",
+            "width": 6,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
         "icon_hVEaUa": {
           "type": "icon",
           "name": "t:names.icon",
@@ -864,6 +876,18 @@
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_F3aRRU": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/Ellipse_3043.png",
+            "width": 6,
+            "link": "",
+            "open_in_new_tab": false
           },
           "blocks": {}
         },
@@ -911,8 +935,10 @@
         "icon_WBztCC",
         "icon_cdDz9A",
         "text_zBenQq",
+        "icon_mptNQb",
         "icon_hVEaUa",
         "text_7kPxJw",
+        "icon_F3aRRU",
         "icon_6Az4jf",
         "text_9eLPpz"
       ],
