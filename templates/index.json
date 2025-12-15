@@ -598,7 +598,7 @@
           "name": "t:names.column",
           "settings": {
             "content_direction": "row",
-            "vertical_on_mobile": true,
+            "vertical_on_mobile": false,
             "horizontal_alignment": "center",
             "vertical_alignment": "center",
             "align_baseline": false,
@@ -683,7 +683,7 @@
           "name": "t:names.column",
           "settings": {
             "content_direction": "row",
-            "vertical_on_mobile": true,
+            "vertical_on_mobile": false,
             "horizontal_alignment": "center",
             "vertical_alignment": "center",
             "align_baseline": false,
