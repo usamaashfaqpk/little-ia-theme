@@ -60,6 +60,10 @@
           {% else %}
             <p>No collection selected.</p>
           {% endif %}
+
+          <div class="collection-info__controls collection-info__controls--{{ block_settings.navigation }}">
+            {%- render 'slideshow-controls', icon_style: block_settings.icons_style, shape: block_settings.background_style -%}
+          </div>
         </div>
       {% endfor %}
     </div>
