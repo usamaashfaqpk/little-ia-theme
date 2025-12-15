@@ -1,6 +1,1240 @@
+{% doc %}
+  @prompt
+    Create a "Shop by Age" section with the following features:
+    
+    1. A centered heading "shop" in script font above "BY AGE" in bold uppercase
+    2. Horizontal tabs navigation with options: ALL AGES, 0-2 YEARS, 3-5 YEARS, 6-8 YEARS, 8+ YEARS, ADULTS
+    3. Active tab should have an underline indicator
+    4. Below tabs, display a horizontal scrollable/carousel grid of category cards with:
+       - Large image backgrounds
+       - Overlay text labels (BACK TO SCHOOL, KIDS GIFT SET, KIDS TRAVEL, KIDS CLOTHING)
+       - Hover effects on cards
+       - Left/right navigation arrows
+    5. A "SHOP ALL 3-5 YEARS" button centered below the cards
+    6. Make the tabs system modular and reusable - each tab should be able to show different content
+    7. Include settings to:
+       - Add/remove tabs dynamically
+       - Customize tab labels
+       - Add images and links for each category card
+       - Adjust number of cards shown
+       - Customize colors and fonts
+    8. Mobile responsive with touch-friendly carousel
+    9. Smooth transitions when switching between tabs
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-shop-by-age-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-shop-by-age-container-{{ ai_gen_id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-shop-by-age-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-shop-by-age-title-script-{{ ai_gen_id }} {
+    font-family: {{ block.settings.script_font.family }}, cursive;
+    font-size: {{ block.settings.script_font_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0;
+    line-height: 1;
+  }
+
+  .ai-shop-by-age-title-bold-{{ ai_gen_id }} {
+    font-family: {{ block.settings.bold_font.family }}, sans-serif;
+    font-size: {{ block.settings.bold_font_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.heading_color }};
+    text-transform: uppercase;
+    margin: 8px 0 0;
+    line-height: 1;
+  }
+
+  .ai-shop-by-age-tabs-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid {{ block.settings.tab_border_color }};
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ai-shop-by-age-tab-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    padding: 12px 0;
+    font-size: {{ block.settings.tab_font_size }}px;
+    color: {{ block.settings.tab_color }};
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+
+  .ai-shop-by-age-tab-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.tab_hover_color }};
+  }
+
+  .ai-shop-by-age-tab-{{ ai_gen_id }}.active {
+    color: {{ block.settings.tab_active_color }};
+  }
+
+  .ai-shop-by-age-tab-{{ ai_gen_id }}.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: {{ block.settings.tab_active_underline_color }};
+  }
+
+  .ai-shop-by-age-content-{{ ai_gen_id }} {
+    position: relative;
+  }
+
+  .ai-shop-by-age-tab-panel-{{ ai_gen_id }} {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-shop-by-age-tab-panel-{{ ai_gen_id }}.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .ai-shop-by-age-carousel-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .ai-shop-by-age-carousel-{{ ai_gen_id }} {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 10px 0;
+  }
+
+  .ai-shop-by-age-carousel-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-shop-by-age-card-{{ ai_gen_id }} {
+    flex: 0 0 {{ block.settings.card_width }}px;
+    height: {{ block.settings.card_height }}px;
+    position: relative;
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-shop-by-age-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-shop-by-age-card-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-shop-by-age-card-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-shop-by-age-card-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-shop-by-age-card-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  }
+
+  .ai-shop-by-age-card-label-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color }};
+    font-size: {{ block.settings.card_text_size }}px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .ai-shop-by-age-nav-button-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: {{ block.settings.nav_button_bg }};
+    color: {{ block.settings.nav_button_color }};
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-shop-by-age-nav-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.nav_button_hover_bg }};
+  }
+
+  .ai-shop-by-age-nav-button-{{ ai_gen_id }}.prev {
+    left: -20px;
+  }
+
+  .ai-shop-by-age-nav-button-{{ ai_gen_id }}.next {
+    right: -20px;
+  }
+
+  .ai-shop-by-age-cta-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-shop-by-age-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: {{ block.settings.button_bg }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-shop-by-age-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-shop-by-age-title-script-{{ ai_gen_id }} {
+      font-size: {{ block.settings.script_font_size | times: 0.7 }}px;
+    }
+
+    .ai-shop-by-age-title-bold-{{ ai_gen_id }} {
+      font-size: {{ block.settings.bold_font_size | times: 0.7 }}px;
+    }
+
+    .ai-shop-by-age-tabs-{{ ai_gen_id }} {
+      gap: 15px;
+      justify-content: flex-start;
+      padding: 0 10px;
+    }
+
+    .ai-shop-by-age-tab-{{ ai_gen_id }} {
+      font-size: {{ block.settings.tab_font_size | times: 0.9 }}px;
+    }
+
+    .ai-shop-by-age-card-{{ ai_gen_id }} {
+      flex: 0 0 {{ block.settings.card_width | times: 0.8 }}px;
+      height: {{ block.settings.card_height | times: 0.8 }}px;
+    }
+
+    .ai-shop-by-age-nav-button-{{ ai_gen_id }} {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<shop-by-age-{{ ai_gen_id }} class="ai-shop-by-age-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-shop-by-age-container-{{ ai_gen_id }}">
+    <div class="ai-shop-by-age-header-{{ ai_gen_id }}">
+      <h2 class="ai-shop-by-age-title-script-{{ ai_gen_id }}">{{ block.settings.script_heading }}</h2>
+      <h3 class="ai-shop-by-age-title-bold-{{ ai_gen_id }}">{{ block.settings.bold_heading }}</h3>
+    </div>
+
+    <div class="ai-shop-by-age-tabs-{{ ai_gen_id }}" role="tablist">
+      {% for i in (1..6) %}
+        {% liquid
+          assign tab_enabled_key = 'tab_' | append: i | append: '_enabled'
+          assign tab_label_key = 'tab_' | append: i | append: '_label'
+          assign tab_enabled = block.settings[tab_enabled_key]
+          assign tab_label = block.settings[tab_label_key]
+        %}
+        {% if tab_enabled and tab_label != blank %}
+          <button
+            class="ai-shop-by-age-tab-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            data-tab="{{ i }}"
+          >
+            {{ tab_label }}
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="ai-shop-by-age-content-{{ ai_gen_id }}">
+      {% for i in (1..6) %}
+        {% liquid
+          assign tab_enabled_key = 'tab_' | append: i | append: '_enabled'
+          assign tab_enabled = block.settings[tab_enabled_key]
+        %}
+        {% if tab_enabled %}
+          <div
+            class="ai-shop-by-age-tab-panel-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+            role="tabpanel"
+            data-panel="{{ i }}"
+          >
+            <div class="ai-shop-by-age-carousel-wrapper-{{ ai_gen_id }}">
+              <button class="ai-shop-by-age-nav-button-{{ ai_gen_id }} prev" aria-label="Previous">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+
+              <div class="ai-shop-by-age-carousel-{{ ai_gen_id }}" data-carousel="{{ i }}">
+                {% for j in (1..4) %}
+                  {% liquid
+                    assign card_image_key = 'tab_' | append: i | append: '_card_' | append: j | append: '_image'
+                    assign card_label_key = 'tab_' | append: i | append: '_card_' | append: j | append: '_label'
+                    assign card_link_key = 'tab_' | append: i | append: '_card_' | append: j | append: '_link'
+                    assign card_image = block.settings[card_image_key]
+                    assign card_label = block.settings[card_label_key]
+                    assign card_link = block.settings[card_link_key]
+                  %}
+                  <a
+                    href="{% if card_link != blank %}{{ card_link }}{% else %}#{% endif %}"
+                    class="ai-shop-by-age-card-{{ ai_gen_id }}"
+                  >
+                    {% if card_image %}
+                      <img
+                        src="{{ card_image | image_url: width: 600 }}"
+                        alt="{{ card_label | escape }}"
+                        class="ai-shop-by-age-card-image-{{ ai_gen_id }}"
+                        loading="lazy"
+                        width="600"
+                        height="400"
+                      >
+                    {% else %}
+                      <div class="ai-shop-by-age-card-placeholder-{{ ai_gen_id }}">
+                        {{ 'collection-apparel-1' | placeholder_svg_tag }}
+                      </div>
+                    {% endif %}
+                    {% if card_label != blank %}
+                      <div class="ai-shop-by-age-card-overlay-{{ ai_gen_id }}">
+                        <h4 class="ai-shop-by-age-card-label-{{ ai_gen_id }}">{{ card_label }}</h4>
+                      </div>
+                    {% endif %}
+                  </a>
+                {% endfor %}
+              </div>
+
+              <button class="ai-shop-by-age-nav-button-{{ ai_gen_id }} next" aria-label="Next">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            {% liquid
+              assign cta_text_key = 'tab_' | append: i | append: '_cta_text'
+              assign cta_link_key = 'tab_' | append: i | append: '_cta_link'
+              assign cta_text = block.settings[cta_text_key]
+              assign cta_link = block.settings[cta_link_key]
+            %}
+            {% if cta_text != blank %}
+              <div class="ai-shop-by-age-cta-{{ ai_gen_id }}">
+                <a
+                  href="{% if cta_link != blank %}{{ cta_link }}{% else %}#{% endif %}"
+                  class="ai-shop-by-age-button-{{ ai_gen_id }}"
+                >
+                  {{ cta_text }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</shop-by-age-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ShopByAge{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.tabs = this.querySelectorAll('.ai-shop-by-age-tab-{{ ai_gen_id }}');
+        this.panels = this.querySelectorAll('.ai-shop-by-age-tab-panel-{{ ai_gen_id }}');
+        this.carousels = this.querySelectorAll('.ai-shop-by-age-carousel-{{ ai_gen_id }}');
+        this.prevButtons = this.querySelectorAll('.ai-shop-by-age-nav-button-{{ ai_gen_id }}.prev');
+        this.nextButtons = this.querySelectorAll('.ai-shop-by-age-nav-button-{{ ai_gen_id }}.next');
+
+        this.setupTabs();
+        this.setupCarousels();
+      }
+
+      setupTabs() {
+        this.tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const tabId = tab.getAttribute('data-tab');
+
+            this.tabs.forEach((t) => {
+              t.classList.remove('active');
+              t.setAttribute('aria-selected', 'false');
+            });
+
+            this.panels.forEach((p) => {
+              p.classList.remove('active');
+            });
+
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+
+            const activePanel = this.querySelector(
+              `.ai-shop-by-age-tab-panel-{{ ai_gen_id }}[data-panel="${tabId}"]`
+            );
+            if (activePanel) {
+              activePanel.classList.add('active');
+            }
+          });
+        });
+      }
+
+      setupCarousels() {
+        this.prevButtons.forEach((button, index) => {
+          button.addEventListener('click', () => {
+            const carousel = this.carousels[index];
+            if (carousel) {
+              carousel.scrollBy({
+                left: -300,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+
+        this.nextButtons.forEach((button, index) => {
+          button.addEventListener('click', () => {
+            const carousel = this.carousels[index];
+            if (carousel) {
+              carousel.scrollBy({
+                left: 300,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('shop-by-age-{{ ai_gen_id }}', ShopByAge{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Shop by age",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "script_heading",
+      "label": "Script text",
+      "default": "shop"
+    },
+    {
+      "type": "font_picker",
+      "id": "script_font",
+      "label": "Script font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "range",
+      "id": "script_font_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Script font size",
+      "default": 40
+    },
+    {
+      "type": "text",
+      "id": "bold_heading",
+      "label": "Bold text",
+      "default": "BY AGE"
+    },
+    {
+      "type": "font_picker",
+      "id": "bold_font",
+      "label": "Bold font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "range",
+      "id": "bold_font_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Bold font size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "tab_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "tab_hover_color",
+      "label": "Hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Active color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_underline_color",
+      "label": "Active underline",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "min": 200,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Width",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "min": 200,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Navigation arrows"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_bg",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_bg",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_color",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Hover background",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Tab 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "tab_1_enabled",
+      "label": "Enable tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_1_label",
+      "label": "Tab label",
+      "default": "ALL AGES"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_1_card_1_image",
+      "label": "Card 1 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_card_1_label",
+      "label": "Card 1 label",
+      "default": "BACK TO SCHOOL"
+    },
+    {
+      "type": "url",
+      "id": "tab_1_card_1_link",
+      "label": "Card 1 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_1_card_2_image",
+      "label": "Card 2 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_card_2_label",
+      "label": "Card 2 label",
+      "default": "KIDS GIFT SET"
+    },
+    {
+      "type": "url",
+      "id": "tab_1_card_2_link",
+      "label": "Card 2 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_1_card_3_image",
+      "label": "Card 3 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_card_3_label",
+      "label": "Card 3 label",
+      "default": "KIDS TRAVEL"
+    },
+    {
+      "type": "url",
+      "id": "tab_1_card_3_link",
+      "label": "Card 3 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_1_card_4_image",
+      "label": "Card 4 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_card_4_label",
+      "label": "Card 4 label",
+      "default": "KIDS CLOTHING"
+    },
+    {
+      "type": "url",
+      "id": "tab_1_card_4_link",
+      "label": "Card 4 link"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_cta_text",
+      "label": "Button text",
+      "default": "SHOP ALL"
+    },
+    {
+      "type": "url",
+      "id": "tab_1_cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tab 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "tab_2_enabled",
+      "label": "Enable tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_2_label",
+      "label": "Tab label",
+      "default": "0-2 YEARS"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_2_card_1_image",
+      "label": "Card 1 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_card_1_label",
+      "label": "Card 1 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_2_card_1_link",
+      "label": "Card 1 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_2_card_2_image",
+      "label": "Card 2 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_card_2_label",
+      "label": "Card 2 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_2_card_2_link",
+      "label": "Card 2 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_2_card_3_image",
+      "label": "Card 3 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_card_3_label",
+      "label": "Card 3 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_2_card_3_link",
+      "label": "Card 3 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_2_card_4_image",
+      "label": "Card 4 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_card_4_label",
+      "label": "Card 4 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_2_card_4_link",
+      "label": "Card 4 link"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_cta_text",
+      "label": "Button text",
+      "default": "SHOP ALL 0-2 YEARS"
+    },
+    {
+      "type": "url",
+      "id": "tab_2_cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tab 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "tab_3_enabled",
+      "label": "Enable tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_3_label",
+      "label": "Tab label",
+      "default": "3-5 YEARS"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_3_card_1_image",
+      "label": "Card 1 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_card_1_label",
+      "label": "Card 1 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_3_card_1_link",
+      "label": "Card 1 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_3_card_2_image",
+      "label": "Card 2 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_card_2_label",
+      "label": "Card 2 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_3_card_2_link",
+      "label": "Card 2 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_3_card_3_image",
+      "label": "Card 3 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_card_3_label",
+      "label": "Card 3 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_3_card_3_link",
+      "label": "Card 3 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_3_card_4_image",
+      "label": "Card 4 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_card_4_label",
+      "label": "Card 4 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_3_card_4_link",
+      "label": "Card 4 link"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_cta_text",
+      "label": "Button text",
+      "default": "SHOP ALL 3-5 YEARS"
+    },
+    {
+      "type": "url",
+      "id": "tab_3_cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tab 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "tab_4_enabled",
+      "label": "Enable tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_4_label",
+      "label": "Tab label",
+      "default": "6-8 YEARS"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_4_card_1_image",
+      "label": "Card 1 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_card_1_label",
+      "label": "Card 1 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_4_card_1_link",
+      "label": "Card 1 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_4_card_2_image",
+      "label": "Card 2 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_card_2_label",
+      "label": "Card 2 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_4_card_2_link",
+      "label": "Card 2 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_4_card_3_image",
+      "label": "Card 3 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_card_3_label",
+      "label": "Card 3 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_4_card_3_link",
+      "label": "Card 3 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_4_card_4_image",
+      "label": "Card 4 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_card_4_label",
+      "label": "Card 4 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_4_card_4_link",
+      "label": "Card 4 link"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_cta_text",
+      "label": "Button text",
+      "default": "SHOP ALL 6-8 YEARS"
+    },
+    {
+      "type": "url",
+      "id": "tab_4_cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tab 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "tab_5_enabled",
+      "label": "Enable tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_5_label",
+      "label": "Tab label",
+      "default": "8+ YEARS"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_5_card_1_image",
+      "label": "Card 1 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_card_1_label",
+      "label": "Card 1 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_5_card_1_link",
+      "label": "Card 1 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_5_card_2_image",
+      "label": "Card 2 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_card_2_label",
+      "label": "Card 2 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_5_card_2_link",
+      "label": "Card 2 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_5_card_3_image",
+      "label": "Card 3 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_card_3_label",
+      "label": "Card 3 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_5_card_3_link",
+      "label": "Card 3 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_5_card_4_image",
+      "label": "Card 4 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_card_4_label",
+      "label": "Card 4 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_5_card_4_link",
+      "label": "Card 4 link"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_cta_text",
+      "label": "Button text",
+      "default": "SHOP ALL 8+ YEARS"
+    },
+    {
+      "type": "url",
+      "id": "tab_5_cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Tab 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "tab_6_enabled",
+      "label": "Enable tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_6_label",
+      "label": "Tab label",
+      "default": "ADULTS"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_6_card_1_image",
+      "label": "Card 1 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_card_1_label",
+      "label": "Card 1 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_6_card_1_link",
+      "label": "Card 1 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_6_card_2_image",
+      "label": "Card 2 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_card_2_label",
+      "label": "Card 2 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_6_card_2_link",
+      "label": "Card 2 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_6_card_3_image",
+      "label": "Card 3 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_card_3_label",
+      "label": "Card 3 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_6_card_3_link",
+      "label": "Card 3 link"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_6_card_4_image",
+      "label": "Card 4 image"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_card_4_label",
+      "label": "Card 4 label"
+    },
+    {
+      "type": "url",
+      "id": "tab_6_card_4_link",
+      "label": "Card 4 link"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_cta_text",
+      "label": "Button text",
+      "default": "SHOP ALL ADULTS"
+    },
+    {
+      "type": "url",
+      "id": "tab_6_cta_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by age"
+    }
+  ]
+}
 {% endschema %}
