@@ -1,0 +1,80 @@
+<section class="our-promise" style="background: {{ section.settings.bg_color }};">
+  <div class="page-width">
+    <div class="promise-inner">
+      {% for block in section.blocks %}
+        {% if block.type == 'icon' %}
+          <span class="promise-icon">{{ block.settings.icon }}</span>
+        {% endif %}
+      {% endfor %}
+
+      <p class="promise-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="promise-text">{{ section.settings.text }}</h2>
+    </div>
+  </div>
+</section>
+
+<style>
+  .our-promise {
+    padding: 40px 0;
+  }
+  .promise-inner {
+    text-align: center;
+    position: relative;
+  }
+  .promise-eyebrow {
+    font-family: cursive;
+    color: #7aa6c2;
+    margin-bottom: 10px;
+  }
+  .promise-text {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #1d3557;
+  }
+  .promise-icon {
+    position: absolute;
+    font-size: 22px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Our Promise",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#fff7ed"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Top text",
+      "default": "our promise"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Main text",
+      "default": "Eco‑friendly, high‑quality, and personalised with love. So you can celebrate the magic of childhood with items made to be treasured."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Floating Icon",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji / Icon",
+          "default": "⭐"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Our Promise" }]
+}
+{% endschema %}
