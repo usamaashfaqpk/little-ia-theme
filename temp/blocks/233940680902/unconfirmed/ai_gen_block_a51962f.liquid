@@ -1,6 +1,80 @@
+{% doc %}
+  @prompt
+    Create a reusable circular image block that can be added anywhere in the theme. The image should be displayed in a perfect circle with the following responsive sizes: 114px by 114px on desktop and 76px by 76px on mobile devices. Include settings to allow merchants to upload and change the image easily.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-circular-image-{{ ai_gen_id }} {
+    display: inline-block;
+    width: 114px;
+    height: 114px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ai-circular-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-circular-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .ai-circular-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-circular-image-{{ ai_gen_id }} {
+      width: 76px;
+      height: 76px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-circular-image-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.image %}
+    <img
+      src="{{ block.settings.image | image_url: width: 228 }}"
+      alt="{{ block.settings.image.alt | escape }}"
+      loading="lazy"
+      width="114"
+      height="114"
+    >
+  {% else %}
+    <div class="ai-circular-image-placeholder-{{ ai_gen_id }}">
+      {{ 'image' | placeholder_svg_tag }}
+    </div>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Circular image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Circular image"
+    }
+  ]
+}
 {% endschema %}
