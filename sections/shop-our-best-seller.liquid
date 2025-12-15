@@ -111,11 +111,16 @@
     display: block;
   }
   .shop-by-age__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
     gap: 16px;
     padding: 0 50px;
+    overflow-x: hidden;
   }
+
+  .shop-by-age__item {
+    flex: 0 0 calc(25% - 12px);
+  }
+
   .shop-by-age__image {
     position: relative;
     display: block;
