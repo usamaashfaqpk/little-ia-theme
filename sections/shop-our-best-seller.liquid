@@ -36,6 +36,7 @@
           class="shop-by-age__panel{% if forloop.first %} is-active{% endif %}"
           id="tab-{{ block.id }}"
           role="tabpanel"
+          style="{% if block_settings.icons_style contains 'large' %} --slideshow-icon-padding: 0px{% endif %}"
         >
           {% if collection != blank %}
             <div class="shop-by-age__grid">
