@@ -195,6 +195,26 @@
       });
     });
   })();
+
+  (() => {
+    document.querySelectorAll('.shop-by-age__panel').forEach(panel => {
+      const grid = panel.querySelector('.shop-by-age__grid');
+      const next = panel.querySelector('.shop-by-age__nav--next');
+      const prev = panel.querySelector('.shop-by-age__nav--prev');
+
+      if (!grid || !next || !prev) return;
+
+      const scrollAmount = grid.offsetWidth;
+
+      next.addEventListener('click', () => {
+        grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+
+      prev.addEventListener('click', () => {
+        grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+    });
+  })();
 </script>
 
 {% schema %}
