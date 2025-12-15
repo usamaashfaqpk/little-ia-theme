@@ -31,7 +31,12 @@
         class="marquee__repeated-items"
         ref="marqueeItems[]"
       >
-        {% content_for 'blocks' %}
+        {% render 'icon-or-image',
+        icon: block_settings.icon,
+        image_upload: block_settings.image_upload,
+        width: block_settings.width,
+        class_name: 'details__icon'
+      %} {% content_for 'blocks' %}
       </div>
     </div>
   </div>
