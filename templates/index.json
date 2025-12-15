@@ -844,11 +844,38 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "text_kWC4eQ": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>Shop</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "'Sacramento', cursive",
+                "font_size": "2.375rem",
+                "line_height": "normal",
+                "font_weight": "400",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "product_list_text_Ub4aRN": {
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<p>shop Our Bestsellers</p>",
+                "text": "<p>Our Bestsellers</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -872,6 +899,7 @@
             }
           },
           "block_order": [
+            "text_kWC4eQ",
             "product_list_text_Ub4aRN"
           ]
         },
@@ -1277,7 +1305,7 @@
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "'Sacramento', cursive",
-                    "font_size": "2.5rem",
+                    "font_size": "2.375rem",
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
@@ -1287,7 +1315,7 @@
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
-                    "padding-block-start": 0,
+                    "padding-block-start": 10,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
@@ -1438,8 +1466,8 @@
                     "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "2.5rem",
+                    "font": "'Sacramento', cursive",
+                    "font_size": "2.375rem",
                     "line_height": "normal",
                     "font_weight": "400",
                     "letter_spacing": "normal",
@@ -1449,7 +1477,7 @@
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
-                    "padding-block-start": 0,
+                    "padding-block-start": 10,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
