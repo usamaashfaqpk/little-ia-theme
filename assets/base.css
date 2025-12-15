@@ -12,6 +12,10 @@ body {
   font-variation-settings: 'slnt' 0;
 }
 
+.font-sacramento {
+  font-family: 'Sacramento', cursive;
+}
+
 :root {
   --hover-lift-amount: 4px;
   --hover-scale-amount: 1.03;
