@@ -505,6 +505,29 @@
         "padding-block-end": 0
       }
     },
+    "shop_our_best_seller_kfNbgB": {
+      "type": "shop-our-best-seller",
+      "blocks": {
+        "tab_FaRLj8": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "All",
+            "collection": "hydrogen",
+            "button_label": "Shop this age"
+          }
+        }
+      },
+      "block_order": [
+        "tab_FaRLj8"
+      ],
+      "name": "Shop Our Best Seller – Tabs",
+      "settings": {
+        "heading": "Shop",
+        "subheading": "OUR BESTSELLERS",
+        "products_limit": 4,
+        "default_button_label": "Shop all"
+      }
+    },
     "marquee_P9GFG9": {
       "type": "marquee",
       "blocks": {
@@ -641,29 +664,6 @@
         "padding-block-start": 24,
         "padding-block-end": 24,
         "gap_between_elements": 24
-      }
-    },
-    "shop_by_age_tabs_PCYM3r": {
-      "type": "shop-by-age-tabs",
-      "blocks": {
-        "tab_jdFHUf": {
-          "type": "tab",
-          "settings": {
-            "tab_title": "All",
-            "collection": "hydrogen",
-            "button_label": "Shop this age"
-          }
-        }
-      },
-      "block_order": [
-        "tab_jdFHUf"
-      ],
-      "name": "Shop by Age – Tabs",
-      "settings": {
-        "heading": "Shop",
-        "subheading": "OUR BESTSELLER",
-        "products_limit": 4,
-        "default_button_label": "Shop all"
       }
     },
     "hero_aLq6pa": {
@@ -1564,8 +1564,8 @@
   },
   "order": [
     "slideshow_zwxzCA",
+    "shop_our_best_seller_kfNbgB",
     "marquee_P9GFG9",
-    "shop_by_age_tabs_PCYM3r",
     "hero_aLq6pa",
     "our_promise_r9DDe7",
     "shop_by_age_tabs_HDti99",
