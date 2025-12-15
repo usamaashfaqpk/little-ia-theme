@@ -505,142 +505,125 @@
         "padding-block-end": 0
       }
     },
-    "marquee_P9GFG9": {
-      "type": "marquee",
+    "section_33AtUd": {
+      "type": "section",
       "blocks": {
-        "icon_BgmYnL": {
-          "type": "icon",
-          "name": "t:names.icon",
+        "group_qt9eC3": {
+          "type": "group",
+          "name": "t:names.column",
           "settings": {
-            "icon": "price_tag",
-            "image_upload": "shopify://shop_images/Frame_1437254920_2.png",
-            "width": 24,
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
             "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_nmAdHr": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>BPA Free Products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "font_weight": "400",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 10,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {}
-        },
-        "icon_Hca8RT": {
-          "type": "icon",
-          "name": "t:names.icon",
-          "settings": {
-            "icon": "recycle",
-            "image_upload": "shopify://shop_images/Frame_1437254920.png",
-            "width": 24,
-            "link": "",
-            "open_in_new_tab": false
+          "blocks": {
+            "icon_VMgFMH": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Frame_1437254920.png",
+                "width": 24,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
+            "text_XHBHxF": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Free Pesonalisation</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "font_weight": "400",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
           },
-          "blocks": {}
-        },
-        "text_jWEq3x": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>Free Pesonalisation</p>",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "font_weight": "400",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "icon_wMbckU": {
-          "type": "icon",
-          "name": "t:names.icon",
-          "settings": {
-            "icon": "price_tag",
-            "image_upload": "shopify://shop_images/Frame_1437254920_1.png",
-            "width": 24,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
-        "text_fb8FfY": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>GOTS Certified Organic Cotton</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "font_weight": "400",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+          "block_order": [
+            "icon_VMgFMH",
+            "text_XHBHxF"
+          ]
         }
       },
       "block_order": [
-        "icon_BgmYnL",
-        "text_nmAdHr",
-        "icon_Hca8RT",
-        "text_jWEq3x",
-        "icon_wMbckU",
-        "text_fb8FfY"
+        "group_qt9eC3"
       ],
-      "name": "t:names.marquee_section",
+      "name": "t:names.multicolumn",
       "settings": {
-        "movement_direction": "reverse",
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
         "color_scheme": "",
-        "padding-block-start": 24,
-        "padding-block-end": 24,
-        "gap_between_elements": 24
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
       }
     },
     "17657938161bfbb728": {
@@ -3555,7 +3538,7 @@
   },
   "order": [
     "slideshow_zwxzCA",
-    "marquee_P9GFG9",
+    "section_33AtUd",
     "17657938161bfbb728",
     "marquee_Dk6WNi",
     "shop_our_best_seller_kfNbgB",
