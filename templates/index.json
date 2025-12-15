@@ -1276,7 +1276,7 @@
                     "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "custom",
-                    "font": "var(--font-body--family)",
+                    "font": "'Sacramento', cursive",
                     "font_size": "2.5rem",
                     "line_height": "normal",
                     "font_weight": "400",
