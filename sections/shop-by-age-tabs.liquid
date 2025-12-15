@@ -1,3 +1,8 @@
+{% comment %}
+  SECTION: Shop by Age – Collection Tabs
+  File: sections/shop-by-age-tabs.liquid
+{% endcomment %}
+
 <section class="shop-by-age">
   <div class="page-width">
     {% if section.settings.heading != blank %}
@@ -58,17 +63,11 @@
       {% endfor %}
     </div>
   </div>
-
-  <div class="slider-nav">
-    <button class="slider-arrow slider-arrow--left" aria-label="Previous">&#10094;</button>
-
-    <button class="slider-arrow slider-arrow--right" aria-label="Next">&#10095;</button>
-  </div>
 </section>
 
 <style>
   .shop-by-age {
-    padding: 60px;
+    padding: 60px 0;
     text-align: center;
   }
   .shop-by-age__heading {
@@ -135,46 +134,6 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
-
-  .slider-nav {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  .slider-arrow {
-    pointer-events: all;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #fff;
-    border: 2px solid #7295bb;
-    color: #7295bb;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .slider-arrow:hover {
-    background: #7295bb;
-    color: #fff;
-  }
-
-  .slider-arrow--left {
-    margin-left: 10px;
-  }
-
-  .slider-arrow--right {
-    margin-right: 10px;
-  }
 </style>
 
 <script>
@@ -192,30 +151,6 @@
       });
     });
   })();
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const slider = document.getElementById('shopByAgeSlider');
-    const nextBtn = document.querySelector('.slider-arrow--right');
-    const prevBtn = document.querySelector('.slider-arrow--left');
-
-    if (!slider) return;
-
-    const scrollAmount = slider.offsetWidth * 0.8;
-
-    nextBtn.addEventListener('click', function () {
-      slider.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
-    });
-
-    prevBtn.addEventListener('click', function () {
-      slider.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth',
-      });
-    });
-  });
 </script>
 
 {% schema %}
