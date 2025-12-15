@@ -777,6 +777,18 @@
     "marquee_Dk6WNi": {
       "type": "marquee",
       "blocks": {
+        "icon_WBztCC": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/Ellipse_3043.png",
+            "width": 12,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
         "icon_cdDz9A": {
           "type": "icon",
           "name": "t:names.icon",
@@ -896,6 +908,7 @@
         }
       },
       "block_order": [
+        "icon_WBztCC",
         "icon_cdDz9A",
         "text_zBenQq",
         "icon_hVEaUa",
