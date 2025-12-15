@@ -39,7 +39,7 @@
   on:click="/{{ action }}"
   ref="{{ action }}"
 >
-  <span class="svg-wrapper icon-{{ icon_name }}" style="background: rgba(0, 0, 0, 0.5);">
+  <span class="svg-wrapper icon-{{ icon_name }}">
     {%- if icon_name == 'caret' -%}
       {{- 'icon-caret.svg' | inline_asset_content -}}
     {%- else -%}
