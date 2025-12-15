@@ -1,4 +1,7 @@
-<section class="our-promise" style="background: {{ section.settings.bg_color }};">
+<section
+  class="our-promise"
+  style="background: {{ section.settings.bg_color }}; {% if section.settings.bg_image != blank %}background-image: url('{{ section.settings.bg_image | img_url: 'master' }}'); background-size: cover; background-position: center;{% endif %}"
+>
   <div class="page-width">
     <div class="promise-inner">
       {% for block in section.blocks %}
@@ -47,6 +50,11 @@
       "id": "bg_color",
       "label": "Background color",
       "default": "#fff7ed"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
     },
     {
       "type": "text",
