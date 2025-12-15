@@ -37,6 +37,9 @@
           id="tab-{{ block.id }}"
           role="tabpanel"
         >
+          <button class="shop-by-age__nav shop-by-age__nav--prev" aria-label="Previous">
+            ‹
+          </button>
           {% if collection != blank %}
             <div class="shop-by-age__grid">
               {% for product in collection.products limit: section.settings.products_limit %}
