@@ -674,7 +674,7 @@ p:empty {
 }
 
 .svg-wrapper {
-  color: currentcolor;
+  color: #FFFFFF;
   display: inline-flex;
   justify-content: center;
   align-items: center;
