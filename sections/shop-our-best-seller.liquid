@@ -27,6 +27,9 @@
       {% endfor %}
     </div>
 
+    <div class="collection-info__controls collection-info__controls--{{ block_settings.navigation }}">
+      {%- render 'slideshow-controls', icon_style: block_settings.icons_style, shape: block_settings.background_style -%}
+    </div>
     <!-- Panels -->
     <div class="shop-by-age__panels">
       {% for block in section.blocks %}
