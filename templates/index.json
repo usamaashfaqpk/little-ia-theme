@@ -1014,6 +1014,38 @@
         "text": "Eco‑friendly, high‑quality, and personalised with love. So you can celebrate the magic of childhood with items made to be treasured."
       }
     },
+    "shop_by_age_tabs_HDti99": {
+      "type": "shop-by-age-tabs",
+      "blocks": {
+        "tab_JeDKQa": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "All Ages",
+            "collection": "frontpage",
+            "button_label": "Shop this age"
+          }
+        },
+        "tab_eikBbP": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "3 - 5 Years",
+            "collection": "automated-collection",
+            "button_label": "Shop this age"
+          }
+        }
+      },
+      "block_order": [
+        "tab_JeDKQa",
+        "tab_eikBbP"
+      ],
+      "name": "Shop by Age – Tabs",
+      "settings": {
+        "heading": "Shop by Age",
+        "subheading": "",
+        "products_limit": 4,
+        "default_button_label": "Shop all"
+      }
+    },
     "section_TwQhJw": {
       "type": "section",
       "blocks": {
@@ -1719,6 +1751,7 @@
     "product_list_MmaAbQ",
     "hero_aLq6pa",
     "our_promise_r9DDe7",
+    "shop_by_age_tabs_HDti99",
     "section_TwQhJw",
     "product_list_fa6P9H",
     "blocks_YHf6hq"
