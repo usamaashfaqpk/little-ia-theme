@@ -37,21 +37,21 @@
           id="tab-{{ block.id }}"
           role="tabpanel"
         >
-          <button class="shop-by-age__nav shop-by-age__nav--prev" aria-label="Previous">
-            ‹
-          </button>
           {% if collection != blank %}
-            <div class="shop-by-age__grid">
-              {% for product in collection.products %}
-                <div class="shop-by-age__item">
-                  <a href="{{ product.url }}" class="shop-by-age__image">
-                    {{ product.featured_image | image_url: width: 600 | image_tag }}
-                    <span class="shop-by-age__label">{{ product.title }}</span>
-                  </a>
-                </div>
-              {% endfor %}
+            <button class="shop-by-age__nav shop-by-age__nav--prev" aria-label="Previous">‹</button>
+            <div class="shop-by-age__viewport">
+              <div class="shop-by-age__grid">
+                {% for product in collection.products %}
+                  <div class="shop-by-age__item">
+                    <a href="{{ product.url }}" class="shop-by-age__image">
+                      {{ product.featured_image | image_url: width: 323, height: 417 | image_tag }}
+                      <span class="shop-by-age__label">{{ product.title }}</span>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
             </div>
-
+            <button class="shop-by-age__nav shop-by-age__nav--next" aria-label="Next">›</button>
             {% if block.settings.button_label != empty %}
               <div class="shop-by-age__cta">
                 <a href="{{ collection.url }}" class="button-secondary">
@@ -62,9 +62,6 @@
           {% else %}
             <p>No collection selected.</p>
           {% endif %}
-          <button class="shop-by-age__nav shop-by-age__nav--next" aria-label="Next">
-            ›
-          </button>
         </div>
       {% endfor %}
     </div>
@@ -110,20 +107,43 @@
   .shop-by-age__panel.is-active {
     display: block;
   }
+
+  .shop-by-age__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
   .shop-by-age__grid {
-    display: flex;
-    gap: 16px;
-    padding: 0 50px;
-    overflow-x: hidden;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 16px !important;
+    padding: 0 50px !important;
+    /flex-wrap: nowrap; /* prevent wrapping */
+  }
+
+  .shop-by-age__viewport {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+
+  .shop-by-age__viewport::-webkit-scrollbar {
+    display: none;
   }
 
   .shop-by-age__item {
-    flex: 0 0 calc(25% - 12px);
+    flex: 0 0 calc((100% - (16px * 3)) / 4); /* 4 items per view */
+    box-sizing: border-box;
   }
 
   .shop-by-age__image {
     position: relative;
     display: block;
+    width: 323px !important;
+    height: 417px !important;
+    object-fit: cover;
   }
   .shop-by-age__label {
     position: absolute;
@@ -143,49 +163,40 @@
     margin-top: 30px;
   }
   @media (max-width: 768px) {
-    .shop-by-age__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
     .shop-by-age__item {
-      flex: 0 0 calc(50% - 8px);
+      flex: 0 0 calc((100% - 16px) / 2); /* 2 items per view on mobile */
     }
   }
 
   .shop-by-age__panel {
-  position: relative;
-}
+    position: relative;
+  }
 
-.shop-by-age__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid #7295bb;
-  background: #fff;
-  color: #7295bb;
-  font-size: 22px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
+  .shop-by-age__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #7295bb;
+    background: #fff;
+    color: #7295bb;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
 
-.shop-by-age__nav--prev {
-  left: 0;
-}
+  .shop-by-age__nav--prev {
+    left: 10px;
+  }
 
-.shop-by-age__nav--next {
-  right: 0;
-}
-
-.shop-by-age__grid {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
-
+  .shop-by-age__nav--next {
+    right: 10px;
+  }
 </style>
 
 <script>
@@ -195,36 +206,48 @@
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
+        // Activate tab
         tabs.forEach((t) => t.classList.remove('is-active'));
         panels.forEach((p) => p.classList.remove('is-active'));
 
         tab.classList.add('is-active');
-        document.getElementById(tab.dataset.tab).classList.add('is-active');
+        const panel = document.getElementById(tab.dataset.tab);
+        panel.classList.add('is-active');
+
+        const viewport = panel.querySelector('.shop-by-age__viewport');
+        if (viewport) {
+          viewport.scrollTo({ left: 0, behavior: 'instant' });
+        }
+
+        // Update arrows scroll for new active tab
+        updateArrows(panel);
       });
     });
-  })();
 
- (() => {
-    document.querySelectorAll('.shop-by-age__panel').forEach(panel => {
-      const grid = panel.querySelector('.shop-by-age__grid');
+    function updateArrows(panel) {
+      const viewport = panel.querySelector('.shop-by-age__viewport');
       const next = panel.querySelector('.shop-by-age__nav--next');
       const prev = panel.querySelector('.shop-by-age__nav--prev');
-      const item = panel.querySelector('.shop-by-age__item');
+      const items = panel.querySelectorAll('.shop-by-age__item');
 
-      if (!grid || !next || !prev || !item) return;
+      if (!viewport || !next || !prev || !items.length) return;
 
-      const gap = parseInt(getComputedStyle(grid).gap || 16);
+      const gap = 16;
       const itemsPerView = window.innerWidth <= 768 ? 2 : 4;
-      const scrollAmount = (item.offsetWidth + gap) * itemsPerView;
 
-      next.addEventListener('click', () => {
-        grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      });
+      const scrollAmount =
+        Array.from(items)
+          .slice(0, itemsPerView)
+          .reduce((total, item) => total + item.offsetWidth, 0) +
+        gap * (itemsPerView - 1);
 
-      prev.addEventListener('click', () => {
-        grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      });
-    });
+      next.onclick = () => viewport.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      prev.onclick = () => viewport.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+
+    // Initialize arrows for first tab
+    const firstPanel = document.querySelector('.shop-by-age__panel.is-active');
+    if (firstPanel) updateArrows(firstPanel);
   })();
 </script>
 
