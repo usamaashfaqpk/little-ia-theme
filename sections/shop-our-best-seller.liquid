@@ -38,7 +38,19 @@
           role="tabpanel"
         >
           {% if collection != blank %}
-            <button class="shop-our-best-seller__nav shop-our-best-seller__nav--prev" aria-label="Previous">‹</button>
+            <button class="shop-our-best-seller__nav shop-our-best-seller__nav--prev" aria-label="Previous">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
             <div class="shop-our-best-seller__viewport">
               <div class="shop-our-best-seller__grid">
                 {% for product in collection.products %}
@@ -51,7 +63,19 @@
                 {% endfor %}
               </div>
             </div>
-            <button class="shop-our-best-seller__nav shop-our-best-seller__nav--next" aria-label="Next">›</button>
+            <button class="shop-our-best-seller__nav shop-our-best-seller__nav--next" aria-label="Next">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
             {% if block.settings.button_label != empty %}
               <div class="shop-our-best-seller__cta">
                 <a href="{{ collection.url }}" class="button-secondary">
