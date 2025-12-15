@@ -14,13 +14,13 @@ body {
 
 .font-sacramento {
   font-family: 'Sacramento', cursive;
-  font-size: 38px;
+  font-size: 2.375rem;
   color: #7295bb;
 }
 
 .font-sacramento-without-clr {
   font-family: 'Sacramento', cursive;
-  font-size: 38px;
+  font-size: 2.375rem;
 }
 
 :root {
