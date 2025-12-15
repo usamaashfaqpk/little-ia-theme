@@ -24,6 +24,6 @@
     class="{{ class }}"
   {% endif %}
 >
-  {% comment %} {%- render 'slideshow-arrow', action: 'previous', icon_style: icon_style, icon_shape: icon_shape -%} {% endcomment %}
-  {% comment %} {%- render 'slideshow-arrow', action: 'next', icon_style: icon_style, icon_shape: icon_shape -%} {% endcomment %}
+  {%- render 'slideshow-arrow', action: 'previous', icon_style: icon_style, icon_shape: icon_shape -%}
+  {%- render 'slideshow-arrow', action: 'next', icon_style: icon_style, icon_shape: icon_shape -%}
 </slideshow-arrows>
