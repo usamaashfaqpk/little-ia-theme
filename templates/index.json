@@ -975,6 +975,9 @@
         "tab_FaRLj8",
         "tab_Kxmqzp"
       ],
+      "custom_css": [
+        ".shop-our-best-seller {margin-bottom: 30px; }"
+      ],
       "name": "Shop Our Best Seller – Tabs",
       "settings": {
         "heading": "Shop",
