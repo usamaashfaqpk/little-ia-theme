@@ -1040,10 +1040,10 @@
       ],
       "name": "Shop by Age – Tabs",
       "settings": {
-        "heading": "Shop by Age",
-        "subheading": "",
+        "heading": "Shop",
+        "subheading": "By Age",
         "products_limit": 4,
-        "default_button_label": "Shop all"
+        "default_button_label": "Shop All Ages"
       }
     },
     "section_TwQhJw": {
