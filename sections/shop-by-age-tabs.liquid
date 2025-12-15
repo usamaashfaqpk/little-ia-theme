@@ -49,11 +49,13 @@
               {% endfor %}
             </div>
 
-            <div class="shop-by-age__cta">
-              <a href="{{ collection.url }}" class="button">
-                {{ block.settings.button_label | default: section.settings.default_button_label }}
-              </a>
-            </div>
+            {% if block.settings.button_label != empty %}
+              <div class="shop-by-age__cta">
+                <a href="{{ collection.url }}" class="button">
+                  {{ block.settings.button_label | default: section.settings.default_button_label }}
+                </a>
+              </div>
+            {% endif %}
           {% else %}
             <p>No collection selected.</p>
           {% endif %}
@@ -70,7 +72,7 @@
   }
   .shop-by-age__heading {
     font-size: 38px;
-    margin-bottom: 15px;
+    color: #7295bb;
     font-family: 'Sacramento';
   }
   .shop-by-age__subheading {
