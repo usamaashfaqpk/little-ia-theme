@@ -42,7 +42,7 @@
           </button>
           {% if collection != blank %}
             <div class="shop-by-age__grid">
-              {% for product in collection.products limit: section.settings.products_limit %}
+              {% for product in collection.products %}
                 <div class="shop-by-age__item">
                   <a href="{{ product.url }}" class="shop-by-age__image">
                     {{ product.featured_image | image_url: width: 600 | image_tag }}
