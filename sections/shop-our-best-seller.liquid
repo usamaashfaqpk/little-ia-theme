@@ -204,15 +204,18 @@
     });
   })();
 
-  (() => {
+ (() => {
     document.querySelectorAll('.shop-by-age__panel').forEach(panel => {
       const grid = panel.querySelector('.shop-by-age__grid');
       const next = panel.querySelector('.shop-by-age__nav--next');
       const prev = panel.querySelector('.shop-by-age__nav--prev');
+      const item = panel.querySelector('.shop-by-age__item');
 
-      if (!grid || !next || !prev) return;
+      if (!grid || !next || !prev || !item) return;
 
-      const scrollAmount = grid.offsetWidth;
+      const gap = parseInt(getComputedStyle(grid).gap || 16);
+      const itemsPerView = window.innerWidth <= 768 ? 2 : 4;
+      const scrollAmount = (item.offsetWidth + gap) * itemsPerView;
 
       next.addEventListener('click', () => {
         grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
