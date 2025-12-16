@@ -55,10 +55,24 @@
               <div class="shop-our-best-seller__grid">
                 {% for product in collection.products %}
                   <div class="shop-our-best-seller__item">
-                  <div>
-                    <a href="{{ product.url }}" class="shop-our-best-seller__image">
-                      {{ product.featured_image | image_url: width: 323, height: 324 | image_tag }}
-                    </a>
+                  <div class="product-image-slider">
+                    {% if product.images.size > 1 %}
+                      <div class="slider-wrapper">
+                        {% for image in product.images %}
+                          <a href="{{ product.url }}" class="slider-slide {% if forloop.first %}active{% endif %}">
+                            {{ image | image_url: width: 323, height: 324 | image_tag }}
+                          </a>
+                        {% endfor %}
+
+                        <!-- Arrows -->
+                        <button class="slider-prev" aria-label="Previous">&lt;</button>
+                        <button class="slider-next" aria-label="Next">&gt;</button>
+                      </div>
+                    {% else %}
+                      <a href="{{ product.url }}" class="shop-our-best-seller__image">
+                        {{ product.featured_image | image_url: width: 323, height: 324 | image_tag }}
+                      </a>
+                    {% endif %}
                   </div>
                   <p class="shop-our-best-seller__tag">{{ product.type }}</p>
                   <p class="shop-our-best-seller__label">{{ product.title }}</p>
