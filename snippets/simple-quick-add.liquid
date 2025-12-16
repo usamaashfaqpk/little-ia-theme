@@ -29,7 +29,7 @@
   visibility: hidden;
   pointer-events: none;
   transform: translateY(6px);
-  transition: opacity .2s ease, transform .2s ease;
+  transition: opacity .2s ease, transform .2s ease, background .2s ease;
 }
 
 .product-image-slider:hover .quick-add-simple {
@@ -39,7 +39,11 @@
   transform: translateY(0);
 }
 
-.quick-add-simple__icon svg { width: 16px; height: 16px; }
+.quick-add-simple__icon svg { 
+  width: 16px; 
+  height: 16px;
+  transition: transform .2s ease;
+}
 
 .quick-add-simple__text {
   font-size: 14px;
@@ -55,9 +59,26 @@
   opacity: 1;
 }
 
+.quick-add-simple.adding {
+  background: #f0f0f0;
+}
+
+.quick-add-simple.adding .quick-add-simple__icon svg {
+  animation: spin 0.6s linear infinite;
+}
+
 .quick-add-simple.added {
-  pointer-events: none;
-  opacity: 0.6;
+  background: #4caf50;
+  border-color: #4caf50;
+  color: white;
+}
+
+.quick-add-simple.added svg {
+  fill: white;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 .quick-add-fly {
@@ -78,6 +99,7 @@ document.addEventListener('click', async function(e) {
 
   if (button.disabled) return;
   button.disabled = true;
+  button.classList.add('adding');
 
   const handle = button.dataset.productHandle;
   if (!handle) return;
@@ -86,9 +108,13 @@ document.addEventListener('click', async function(e) {
     // Get product JSON
     const productData = await fetch(`/products/${handle}.js`).then(r => r.json());
     const variant = productData.variants.find(v => v.available);
-    if (!variant) { button.disabled = false; return; }
+    if (!variant) { 
+      button.disabled = false;
+      button.classList.remove('adding');
+      return;
+    }
 
-    // Get product image
+    // Get product image for animation
     const imgEl = button.closest('.product-image-slider')?.querySelector('img');
     let clone;
     if (imgEl) {
@@ -102,21 +128,23 @@ document.addEventListener('click', async function(e) {
       document.body.appendChild(clone);
     }
 
-    // Add 1 item
-    await fetch('/cart/add.js', {
+    // Add to cart
+    const response = await fetch('/cart/add.js', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({ id: variant.id, quantity: 1 })
     });
 
+    if (!response.ok) throw new Error('Failed to add to cart');
+
     // Animate fly-to-cart
     if (clone) {
-      const cartIcon = document.querySelector('.header__cart, .cart-count-bubble');
+      const cartIcon = document.querySelector('.header__icon--cart, .cart-count-bubble, [href="/cart"]');
       if (cartIcon) {
         const rect = cartIcon.getBoundingClientRect();
         requestAnimationFrame(() => {
           clone.style.transform = `translate(${rect.left - clone.getBoundingClientRect().left}px, ${rect.top - clone.getBoundingClientRect().top}px) scale(0.2)`;
-          clone.style.opacity = 0;
+          clone.style.opacity = '0';
         });
         setTimeout(() => clone.remove(), 600);
       } else {
@@ -124,23 +152,74 @@ document.addEventListener('click', async function(e) {
       }
     }
 
+    // Get updated cart
+    const cart = await fetch('/cart.js').then(r => r.json());
+
+    // Update cart count in header
+    const cartCountSelectors = [
+      '.cart-count-bubble',
+      '.header__cart-count',
+      '[data-cart-count]',
+      '.cart-count'
+    ];
+    
+    cartCountSelectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
+        el.textContent = cart.item_count;
+        if (cart.item_count > 0) {
+          el.classList.remove('hidden');
+          el.style.display = '';
+        }
+      });
+    });
+
+    // Trigger Shopify theme events
+    document.documentElement.dispatchEvent(
+      new CustomEvent('cart:refresh', { bubbles: true, detail: { cart } })
+    );
+
+    // Open cart drawer (works with most Shopify themes)
+    setTimeout(() => {
+      const cartDrawerTriggers = [
+        'cart-drawer',
+        '[data-cart-drawer]',
+        '#cart-drawer',
+        'cart-notification'
+      ];
+      
+      for (const selector of cartDrawerTriggers) {
+        const drawer = document.querySelector(selector);
+        if (drawer) {
+          if (typeof drawer.open === 'function') {
+            drawer.open();
+          } else if (drawer.classList) {
+            drawer.classList.add('active', 'is-open');
+          }
+          break;
+        }
+      }
+
+      // Alternative: trigger cart icon click
+      const cartLink = document.querySelector('.header__icon--cart, [href="/cart"]');
+      if (cartLink && cartLink.click) {
+        cartLink.click();
+      }
+    }, 300);
+
     // Visual feedback
+    button.classList.remove('adding');
     button.classList.add('added');
+    
     setTimeout(() => {
       button.classList.remove('added');
       button.disabled = false;
     }, 1500);
 
-    // Update header cart count instantly
-    const cartCountEls = document.querySelectorAll('.cart-count-bubble, .header__cart-count');
-    if (cartCountEls.length) {
-      const cart = await fetch('/cart.js').then(r => r.json());
-      cartCountEls.forEach(el => el.textContent = cart.item_count);
-    }
-
   } catch(err) {
     console.error('Quick add failed', err);
+    button.classList.remove('adding');
     button.disabled = false;
+    alert('Failed to add product to cart. Please try again.');
   }
 });
 </script>
