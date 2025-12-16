@@ -8,22 +8,13 @@
 {% assign variant = product.selected_or_first_available_variant %}
 
 {% if variant.available %}
-  <form
-    method="post"
-    action="/cart/add"
+  <button
     class="simple-quick-add"
+    data-variant-id="{{ variant.id }}"
+    aria-label="Add {{ product.title }} to cart"
   >
-    <input type="hidden" name="id" value="{{ variant.id }}">
-    <input type="hidden" name="quantity" value="1">
-
-    <button
-      type="submit"
-      class="simple-quick-add__button"
-      aria-label="Add {{ product.title }} to cart"
-    >
-      {{ 'icon-add-to-cart.svg' | inline_asset_content }}
-    </button>
-  </form>
+    {{ 'icon-add-to-cart.svg' | inline_asset_content }}
+  </button>
 {% endif %}
 
 <style>
