@@ -129,17 +129,23 @@ document.addEventListener('click', async function(e) {
     }
 
     // Add to cart
-    const response = await fetch('/cart/add.js', {
+    const addResponse = await fetch('/cart/add.js', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ id: variant.id, quantity: 1 })
+      body: JSON.stringify({ 
+        items: [{
+          id: variant.id,
+          quantity: 1
+        }]
+      })
     });
 
-    if (!response.ok) throw new Error('Failed to add to cart');
+    if (!addResponse.ok) throw new Error('Failed to add to cart');
+    const addedItem = await addResponse.json();
 
     // Animate fly-to-cart
     if (clone) {
-      const cartIcon = document.querySelector('.header__icon--cart, .cart-count-bubble, [href="/cart"]');
+      const cartIcon = document.querySelector('.header__icon--cart, .cart-count-bubble, #cart-icon-bubble, [href="/cart"]');
       if (cartIcon) {
         const rect = cartIcon.getBoundingClientRect();
         requestAnimationFrame(() => {
@@ -152,59 +158,84 @@ document.addEventListener('click', async function(e) {
       }
     }
 
-    // Get updated cart
-    const cart = await fetch('/cart.js').then(r => r.json());
+    // Get updated cart data
+    const cartResponse = await fetch('/cart.js');
+    const cart = await cartResponse.json();
 
-    // Update cart count in header
-    const cartCountSelectors = [
-      '.cart-count-bubble',
-      '.header__cart-count',
-      '[data-cart-count]',
-      '.cart-count'
-    ];
-    
-    cartCountSelectors.forEach(selector => {
-      document.querySelectorAll(selector).forEach(el => {
-        el.textContent = cart.item_count;
-        if (cart.item_count > 0) {
-          el.classList.remove('hidden');
-          el.style.display = '';
-        }
-      });
-    });
-
-    // Trigger Shopify theme events
-    document.documentElement.dispatchEvent(
-      new CustomEvent('cart:refresh', { bubbles: true, detail: { cart } })
-    );
-
-    // Open cart drawer (works with most Shopify themes)
-    setTimeout(() => {
-      const cartDrawerTriggers = [
-        'cart-drawer',
-        '[data-cart-drawer]',
-        '#cart-drawer',
-        'cart-notification'
+    // Update all possible cart count elements
+    const updateCartCount = (count) => {
+      // Dawn theme and common selectors
+      const selectors = [
+        '.cart-count-bubble',
+        '#cart-icon-bubble',
+        '.header__cart-count',
+        '[data-cart-count]',
+        '.cart-count',
+        'cart-count-bubble',
+        '#CartCount',
+        '.CartCount'
       ];
       
-      for (const selector of cartDrawerTriggers) {
-        const drawer = document.querySelector(selector);
-        if (drawer) {
-          if (typeof drawer.open === 'function') {
-            drawer.open();
-          } else if (drawer.classList) {
-            drawer.classList.add('active', 'is-open');
+      selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          // Update text content
+          el.textContent = count;
+          el.innerText = count;
+          
+          // Update data attribute if exists
+          if (el.hasAttribute('data-cart-count')) {
+            el.setAttribute('data-cart-count', count);
           }
-          break;
-        }
-      }
+          
+          // Show/hide based on count
+          if (count > 0) {
+            el.classList.remove('hidden');
+            el.removeAttribute('hidden');
+            el.style.display = '';
+          } else {
+            el.classList.add('hidden');
+          }
+        });
+      });
+    };
 
-      // Alternative: trigger cart icon click
-      const cartLink = document.querySelector('.header__icon--cart, [href="/cart"]');
-      if (cartLink && cartLink.click) {
+    // Update the count
+    updateCartCount(cart.item_count);
+
+    // Dispatch multiple events for theme compatibility
+    const events = [
+      new CustomEvent('cart:refresh', { bubbles: true, detail: { cart } }),
+      new CustomEvent('cart:updated', { bubbles: true, detail: { cart } }),
+      new CustomEvent('cart:change', { bubbles: true, detail: { cart } })
+    ];
+    
+    events.forEach(event => {
+      document.documentElement.dispatchEvent(event);
+      document.body.dispatchEvent(event);
+      document.dispatchEvent(event);
+    });
+
+    // Trigger cart drawer/notification
+    setTimeout(() => {
+      // Try to open cart drawer
+      const drawer = document.querySelector('cart-drawer');
+      if (drawer && typeof drawer.renderContents === 'function') {
+        drawer.renderContents(cart);
+      }
+      
+      // Try cart notification
+      const notification = document.querySelector('cart-notification');
+      if (notification && typeof notification.renderContents === 'function') {
+        notification.renderContents(cart);
+      }
+      
+      // Fallback: click cart icon
+      const cartLink = document.querySelector('.header__icon--cart');
+      if (cartLink) {
         cartLink.click();
       }
-    }, 300);
+    }, 100);
 
     // Visual feedback
     button.classList.remove('adding');
@@ -216,7 +247,7 @@ document.addEventListener('click', async function(e) {
     }, 1500);
 
   } catch(err) {
-    console.error('Quick add failed', err);
+    console.error('Quick add failed:', err);
     button.classList.remove('adding');
     button.disabled = false;
     alert('Failed to add product to cart. Please try again.');
