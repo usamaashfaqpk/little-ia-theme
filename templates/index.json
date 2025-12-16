@@ -853,7 +853,9 @@
           "type": "tab",
           "settings": {
             "tab_title": "All",
-            "collection": "all",
+            "collection": [
+              "all"
+            ],
             "button_label": "Shop All Best Sellers"
           }
         },
@@ -861,7 +863,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "New Born",
-            "collection": "automated-collection",
+            "collection": [],
             "button_label": "Shop All New Born"
           }
         }
