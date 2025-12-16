@@ -3022,11 +3022,11 @@
               },
               "blocks": {}
             },
-            "text_iPAEnN": {
+            "text_yYJeAm": {
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>complimentary  personalisation</p>",
+                "text": "<p>complimentary packaging</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -3044,28 +3044,28 @@
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 35,
+                "padding-inline-end": 35
               },
               "blocks": {}
             },
-            "text_tzUQxK": {
+            "text_EBbGmY": {
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>Intentional design</h2>",
+                "text": "<p>with gift sets</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "type_preset": "custom",
+                "font": "'Sacramento', cursive",
+                "font_size": "2rem",
                 "line_height": "normal",
                 "font_weight": "400",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "color": "var(--color-foreground)",
+                "color": "#7295BB",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -3079,8 +3079,8 @@
           },
           "block_order": [
             "icon_ANTViR",
-            "text_iPAEnN",
-            "text_tzUQxK"
+            "text_yYJeAm",
+            "text_EBbGmY"
           ]
         },
         "group_hHhkhG": {
@@ -3135,11 +3135,11 @@
               },
               "blocks": {}
             },
-            "text_4xNMng": {
+            "text_BdCd6z": {
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>complimentary  personalisation</p>",
+                "text": "<p>worldwide express shipping</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -3157,28 +3157,28 @@
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 35,
+                "padding-inline-end": 35
               },
               "blocks": {}
             },
-            "text_QpeWAA": {
+            "text_FGBMkm": {
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>Intentional design</h2>",
+                "text": "<p>5 to 7 working days</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "type_preset": "custom",
+                "font": "'Sacramento', cursive",
+                "font_size": "2rem",
                 "line_height": "normal",
                 "font_weight": "400",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "color": "var(--color-foreground)",
+                "color": "#7295BB",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -3192,8 +3192,8 @@
           },
           "block_order": [
             "icon_gpNipd",
-            "text_4xNMng",
-            "text_QpeWAA"
+            "text_BdCd6z",
+            "text_FGBMkm"
           ]
         }
       },
