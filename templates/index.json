@@ -2233,6 +2233,102 @@
         "padding-block-end": 48
       }
     },
+    "shop_by_theme_jxfzK3": {
+      "type": "shop-by-theme",
+      "blocks": {
+        "category_WiPJkc": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_dWdfVe": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_ydHAcN": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_U7Y3XW": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_c66hWm": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_i6MUVr": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_NkamL7": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_tRqAbz": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_EbBm3U": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_7jDRgH": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_kEmYLn": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_dGf8wr": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        }
+      },
+      "block_order": [
+        "category_WiPJkc",
+        "category_dWdfVe",
+        "category_ydHAcN",
+        "category_U7Y3XW",
+        "category_c66hWm",
+        "category_i6MUVr",
+        "category_NkamL7",
+        "category_tRqAbz",
+        "category_EbBm3U",
+        "category_7jDRgH",
+        "category_kEmYLn",
+        "category_dGf8wr"
+      ],
+      "name": "Shop by Theme",
+      "settings": {
+        "heading": "Shop",
+        "subheading": "By Theme"
+      }
+    },
     "section_TwQhJw": {
       "type": "section",
       "blocks": {
@@ -3418,102 +3514,6 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
-    },
-    "shop_by_theme_jxfzK3": {
-      "type": "shop-by-theme",
-      "blocks": {
-        "category_WiPJkc": {
-          "type": "category",
-          "settings": {
-            "category_collection": "automated-collection"
-          }
-        },
-        "category_dWdfVe": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_ydHAcN": {
-          "type": "category",
-          "settings": {
-            "category_collection": "automated-collection"
-          }
-        },
-        "category_U7Y3XW": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_c66hWm": {
-          "type": "category",
-          "settings": {
-            "category_collection": "automated-collection"
-          }
-        },
-        "category_i6MUVr": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_NkamL7": {
-          "type": "category",
-          "settings": {
-            "category_collection": "automated-collection"
-          }
-        },
-        "category_tRqAbz": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_EbBm3U": {
-          "type": "category",
-          "settings": {
-            "category_collection": "automated-collection"
-          }
-        },
-        "category_7jDRgH": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_kEmYLn": {
-          "type": "category",
-          "settings": {
-            "category_collection": "automated-collection"
-          }
-        },
-        "category_dGf8wr": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        }
-      },
-      "block_order": [
-        "category_WiPJkc",
-        "category_dWdfVe",
-        "category_ydHAcN",
-        "category_U7Y3XW",
-        "category_c66hWm",
-        "category_i6MUVr",
-        "category_NkamL7",
-        "category_tRqAbz",
-        "category_EbBm3U",
-        "category_7jDRgH",
-        "category_kEmYLn",
-        "category_dGf8wr"
-      ],
-      "name": "Shop by Theme",
-      "settings": {
-        "heading": "Shop",
-        "subheading": "By Theme"
-      }
     }
   },
   "order": [
@@ -3526,9 +3526,9 @@
     "our_promise_r9DDe7",
     "shop_by_age_tabs_HDti99",
     "section_qVKCqL",
+    "shop_by_theme_jxfzK3",
     "section_TwQhJw",
     "section_KhMr7Y",
-    "section_UttABg",
-    "shop_by_theme_jxfzK3"
+    "section_UttABg"
   ]
 }
