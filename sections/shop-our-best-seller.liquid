@@ -57,8 +57,8 @@
                   <div class="shop-our-best-seller__item">
                     <a href="{{ product.url }}" class="shop-our-best-seller__image">
                       {{ product.featured_image | image_url: width: 323, height: 417 | image_tag }}
-                      <span class="shop-our-best-seller__label">{{ product.title }}</span>
                     </a>
+                    <span class="shop-our-best-seller__label">{{ product.title }}</span>
                   </div>
                 {% endfor %}
               </div>
