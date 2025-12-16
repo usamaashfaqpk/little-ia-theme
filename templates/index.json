@@ -3428,10 +3428,22 @@
             "category_collection": "automated-collection"
           }
         },
+        "category_dWdfVe": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
         "category_ydHAcN": {
           "type": "category",
           "settings": {
             "category_collection": "automated-collection"
+          }
+        },
+        "category_U7Y3XW": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
           }
         },
         "category_c66hWm": {
@@ -3440,10 +3452,22 @@
             "category_collection": "automated-collection"
           }
         },
+        "category_i6MUVr": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
         "category_NkamL7": {
           "type": "category",
           "settings": {
             "category_collection": "automated-collection"
+          }
+        },
+        "category_tRqAbz": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
           }
         },
         "category_EbBm3U": {
@@ -3464,30 +3488,6 @@
             "category_collection": "automated-collection"
           }
         },
-        "category_dWdfVe": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_U7Y3XW": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_i6MUVr": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_tRqAbz": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
         "category_dGf8wr": {
           "type": "category",
           "settings": {
@@ -3497,16 +3497,16 @@
       },
       "block_order": [
         "category_WiPJkc",
+        "category_dWdfVe",
         "category_ydHAcN",
+        "category_U7Y3XW",
         "category_c66hWm",
+        "category_i6MUVr",
         "category_NkamL7",
+        "category_tRqAbz",
         "category_EbBm3U",
         "category_7jDRgH",
         "category_kEmYLn",
-        "category_dWdfVe",
-        "category_U7Y3XW",
-        "category_i6MUVr",
-        "category_tRqAbz",
         "category_dGf8wr"
       ],
       "name": "Shop by Theme",
