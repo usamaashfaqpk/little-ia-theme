@@ -22,22 +22,25 @@
 
 <style>
   .three-columns-layout {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
     gap: 16px;
+    justify-items: center; /* center content horizontally */
+    text-align: center; /* center text inside each column */
+    align-items: center; /* center content vertically if needed */
   }
 
   .column {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    width: calc(33.333% - 32px);
-    text-align: center;
+    flex-direction: column; /* stack icon and heading */
+    align-items: center; /* center icon and heading horizontally */
+    justify-content: center;
   }
 
   .column-icon {
     width: 24px;
     height: 24px;
+    margin-bottom: 8px; /* spacing below icon */
   }
 
   .column-heading {
@@ -45,10 +48,11 @@
   }
 
   @media (max-width: 768px) {
-    .column {
-      width: calc(50% - 16px);
+    .three-columns-layout {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
     }
   }
+
 </style>
 
 {% schema %}
