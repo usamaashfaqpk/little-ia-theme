@@ -82,8 +82,8 @@
                       </a>
                     {% endif %}
 
-                    {% render 'quick-add', product: product, section_id: section.id, block: block %}
-                     {% comment %} {% render 'simple-quick-add', product: product %} {% endcomment %}
+                    {% comment %} {% render 'quick-add', product: product, section_id: section.id, block: block %} {% endcomment %}
+                     {% render 'simple-quick-add', product: product %}
                   </div>
                   <p class="shop-our-best-seller__tag">{{ product.type }}</p>
                   <p class="shop-our-best-seller__label">{{ product.title }}</p>
@@ -172,10 +172,22 @@
   }
   .shop-our-best-seller__panel {
     display: none;
-    position: relative;
   }
   .shop-our-best-seller__panel.is-active {
     display: block;
+  }
+
+  .shop-our-best-seller__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .shop-our-best-seller__grid {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 16px !important;
+    padding: 0 50px !important;
+    flex-wrap: nowrap; /* prevent wrapping */
   }
 
   .shop-our-best-seller__viewport {
@@ -190,16 +202,7 @@
     display: none;
   }
 
-  .shop-our-best-seller__grid {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 16px !important;
-    padding: 0 50px !important;
-    flex-wrap: nowrap; /* prevent wrapping */
-  }
-
   .shop-our-best-seller__item {
-    position: relative;
     flex: 0 0 calc((100% - (16px * 3)) / 4); /* 4 items per view */
     box-sizing: border-box;
   }
@@ -210,12 +213,12 @@
     height: 324px !important;
     object-fit: cover;
   }
-  
   .shop-our-best-seller__label {
     font-size: 20px;
     text-align: left;
     font-weight: 500 !important;
     width: 100%;
+
     white-space: nowrap;       /* prevent text from wrapping */
     overflow: hidden;          /* hide overflow */
     text-overflow: ellipsis;   /* show "..." at the end */
@@ -236,6 +239,21 @@
     display: flex;
     justify-content: center;
     margin-top: 30px;
+  }
+  @media (max-width: 768px) {
+    .shop-our-best-seller__item {
+      flex: 0 0 calc((100% - 16px) / 2); /* 2 items per view on mobile */
+    }
+
+    .shop-our-best-seller__image {
+      width: 173px !important;
+      height: 175px !important;
+      object-fit: cover;
+    }
+  }
+
+  .shop-our-best-seller__panel {
+    position: relative;
   }
 
   .shop-our-best-seller__nav {
@@ -264,125 +282,50 @@
     right: 10px;
   }
 
-  /* Product Image Slider */
   .product-image-slider {
-    position: relative;
-    width: 323px;
-    height: 324px;
-    overflow: visible; /* Changed to visible for quick-add */
-  }
+  position: relative;
+  width: 323px;
+  height: 324px;
+  overflow: hidden;
+}
 
-  .slider-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; /* Keep overflow hidden on wrapper */
-  }
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
-  .slider-slide {
-    display: none;
-    width: 100%;
-    height: 100%;
-  }
+.slider-slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
 
-  .slider-slide.active {
-    display: block;
-  }
+.slider-slide.active {
+  display: block;
+}
 
-  .slider-prev,
-  .slider-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.65);
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    z-index: 5; /* Reduced z-index */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.slider-prev,
+.slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .slider-prev { left: 8px; }
-  .slider-next { right: 8px; }
+.slider-prev { left: 8px; }
+.slider-next { right: 8px; }
 
-  /* Quick Add Fixes */
-  .shop-our-best-seller__item .quick-add {
-    --quick-add-display: flex !important;
-    --quick-add-mobile-display: flex !important;
-    position: absolute !important;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 15;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    display: flex !important;
-  }
-
-  .shop-our-best-seller__item:hover .quick-add {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  /* Ensure quick-add buttons display properly */
-  .shop-our-best-seller__item .quick-add__button {
-    display: grid !important;
-    min-width: 40px;
-    min-height: 40px;
-  }
-
-  .shop-our-best-seller__item .quick-add__button--add {
-    display: grid !important;
-  }
-
-  .shop-our-best-seller__item .quick-add__button--choose {
-    display: grid !important;
-  }
-
-  /* Hide duplicate button for single variant products */
-  .shop-our-best-seller__item .quick-add__product-form-component--single-variant .quick-add__button--choose {
-    display: none !important;
-  }
-
-  /* Ensure only one button shows */
-  .shop-our-best-seller__item .quick-add .shopify-product-form {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: flex-end !important;
-  }
-
-  /* Ensure icon and text are visible */
-  .shop-our-best-seller__item .quick-add__button .add-to-cart-icon,
-  .shop-our-best-seller__item .quick-add__button .add-to-cart-text {
-    display: flex !important;
-    opacity: 1 !important;
-  }
-
-  .shop-our-best-seller__item .quick-add__button .add-to-cart-text__content {
-    width: auto !important;
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-  }
-
-  /* Mobile Responsive */
-  @media (max-width: 768px) {
-    .shop-our-best-seller__item {
-      flex: 0 0 calc((100% - 16px) / 2); /* 2 items per view on mobile */
-    }
-
-    .shop-our-best-seller__image,
-    .product-image-slider {
-      width: 173px !important;
-      height: 175px !important;
-    }
-  }
 </style>
-
 
 <script>
   (() => {
@@ -458,7 +401,6 @@
     });
   });
 });
-
 </script>
 
 {% schema %}
