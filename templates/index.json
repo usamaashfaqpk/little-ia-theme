@@ -798,6 +798,39 @@
         "padding-block-end": 48
       }
     },
+    "three_columns_layout_yJgrDj": {
+      "type": "three-columns-layout",
+      "blocks": {
+        "column_Be6jFm": {
+          "type": "column",
+          "settings": {
+            "icon_image": "shopify://shop_images/Frame_1437254920.png",
+            "heading": "Free Pesonalisation"
+          }
+        },
+        "column_THfrER": {
+          "type": "column",
+          "settings": {
+            "icon_image": "shopify://shop_images/Frame_1437254920_1.png",
+            "heading": "GOTS Certified Organic Cotton"
+          }
+        },
+        "column_bW4NHh": {
+          "type": "column",
+          "settings": {
+            "icon_image": "shopify://shop_images/Frame_1437254920_2.png",
+            "heading": "BPA Free Products"
+          }
+        }
+      },
+      "block_order": [
+        "column_Be6jFm",
+        "column_THfrER",
+        "column_bW4NHh"
+      ],
+      "name": "Three Columns Layout",
+      "settings": {}
+    },
     "17657938161bfbb728": {
       "type": "_blocks",
       "blocks": {
@@ -3711,6 +3744,7 @@
   "order": [
     "slideshow_zwxzCA",
     "section_33AtUd",
+    "three_columns_layout_yJgrDj",
     "17657938161bfbb728",
     "marquee_Dk6WNi",
     "shop_our_best_seller_kfNbgB",
