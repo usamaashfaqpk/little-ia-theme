@@ -1,0 +1,69 @@
+{% comment %}
+  Simple Quick Add
+  - Adds first available variant to cart
+  - No modal
+  - No JS
+{% endcomment %}
+
+{% assign variant = product.selected_or_first_available_variant %}
+
+{% if variant.available %}
+  <form
+    method="post"
+    action="/cart/add"
+    class="simple-quick-add"
+  >
+    <input type="hidden" name="id" value="{{ variant.id }}">
+    <input type="hidden" name="quantity" value="1">
+
+    <button
+      type="submit"
+      class="simple-quick-add__button"
+      aria-label="Add {{ product.title }} to cart"
+    >
+      {{ 'icon-add-to-cart.svg' | inline_asset_content }}
+    </button>
+  </form>
+{% endif %}
+
+<style>
+  .product-image-slider {
+    position: relative;
+  }
+
+  .simple-quick-add {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateY(6px);
+    z-index: 20;
+  }
+
+  .product-image-slider:hover .simple-quick-add {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+
+  .simple-quick-add__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+  }
+
+  .simple-quick-add__button svg {
+    width: 16px;
+    height: 16px;
+  }
+</style>
