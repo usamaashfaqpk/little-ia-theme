@@ -55,12 +55,13 @@
               <div class="shop-our-best-seller__grid">
                 {% for product in collection.products %}
                   <div class="shop-our-best-seller__item">
+                  <div>
                     <a href="{{ product.url }}" class="shop-our-best-seller__image">
                       {{ product.featured_image | image_url: width: 323, height: 417 | image_tag }}
                     </a>
                   </div>
-
                   <p class="shop-our-best-seller__label">{{ product.title }}</p>
+                  </div>
                 {% endfor %}
               </div>
             </div>
