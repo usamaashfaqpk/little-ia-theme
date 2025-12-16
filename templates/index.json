@@ -2784,11 +2784,12 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "icon_WAEDar": {
+            "icon_cqzVw8": {
               "type": "icon",
               "name": "t:names.icon",
               "settings": {
                 "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Ai-Edit-Spark--Streamline-Core-Remix.png",
                 "width": 24,
                 "link": "",
                 "open_in_new_tab": false
@@ -2851,7 +2852,7 @@
             }
           },
           "block_order": [
-            "icon_WAEDar",
+            "icon_cqzVw8",
             "text_tAEHbB",
             "text_WqKeeW"
           ]
@@ -2896,11 +2897,12 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "icon_cP3K4y": {
+            "icon_yH88CU": {
               "type": "icon",
               "name": "t:names.icon",
               "settings": {
                 "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Frame_1437254000.png",
                 "width": 24,
                 "link": "",
                 "open_in_new_tab": false
@@ -2911,7 +2913,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>complimentary  personalisation</p>",
+                "text": "<p>same day delivery  in Dubai</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -2963,7 +2965,7 @@
             }
           },
           "block_order": [
-            "icon_cP3K4y",
+            "icon_yH88CU",
             "text_GpVKiK",
             "text_7UhJr3"
           ]
@@ -3013,6 +3015,7 @@
               "name": "t:names.icon",
               "settings": {
                 "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Gift-Card--Streamline-Tabler.png",
                 "width": 24,
                 "link": "",
                 "open_in_new_tab": false
@@ -3125,6 +3128,7 @@
               "name": "t:names.icon",
               "settings": {
                 "icon": "price_tag",
+                "image_upload": "shopify://shop_images/Acute--Streamline-Rounded-Material.png",
                 "width": 24,
                 "link": "",
                 "open_in_new_tab": false
