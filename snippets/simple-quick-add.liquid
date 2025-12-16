@@ -9,13 +9,17 @@
 
 {% if variant.available %}
   <button
-    class="simple-quick-add"
+    class="quick-add-simple"
     data-variant-id="{{ variant.id }}"
     aria-label="Add {{ product.title }} to cart"
   >
-    {{ 'icon-add-to-cart.svg' | inline_asset_content }}
+    <span class="quick-add-simple__icon">
+      {{ 'icon-add-to-cart.svg' | inline_asset_content }}
+    </span>
+    <span class="quick-add-simple__text">Add</span>
   </button>
 {% endif %}
+
 
 <style>
   .product-image-slider {
