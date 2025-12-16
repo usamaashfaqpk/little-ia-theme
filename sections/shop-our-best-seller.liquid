@@ -66,7 +66,7 @@
                     AED {{ product.price | money_without_currency }}
                     
                     {% if product.compare_at_price > product.price %}
-                      <span class="original-price" style="text-decoration: line-through; margin-left: 8px; color: #888;">
+                      <span class="original-price" style="text-decoration: line-through; margin-left: 8px; color: #888; font-size: 16px;">
                         AED {{ product.compare_at_price | money_without_currency }}
                       </span>
 
