@@ -3418,6 +3418,67 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "shop_by_theme_jxfzK3": {
+      "type": "shop-by-theme",
+      "blocks": {
+        "category_kEmYLn": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_dWdfVe": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_7jDRgH": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_U7Y3XW": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_i6MUVr": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_tRqAbz": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
+        "category_dGf8wr": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        }
+      },
+      "block_order": [
+        "category_kEmYLn",
+        "category_dWdfVe",
+        "category_7jDRgH",
+        "category_U7Y3XW",
+        "category_i6MUVr",
+        "category_tRqAbz",
+        "category_dGf8wr"
+      ],
+      "name": "Shop by Theme",
+      "settings": {
+        "heading": "Shop",
+        "subheading": "By Theme"
+      }
     }
   },
   "order": [
@@ -3432,6 +3493,7 @@
     "section_qVKCqL",
     "section_TwQhJw",
     "section_KhMr7Y",
-    "section_UttABg"
+    "section_UttABg",
+    "shop_by_theme_jxfzK3"
   ]
 }
