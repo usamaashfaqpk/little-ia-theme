@@ -81,6 +81,8 @@
                         {{ product.featured_image | image_url: width: 323, height: 324 | image_tag }}
                       </a>
                     {% endif %}
+
+                    {% render 'quick-add' %}
                   </div>
                   <p class="shop-our-best-seller__tag">{{ product.type }}</p>
                   <p class="shop-our-best-seller__label">{{ product.title }}</p>
