@@ -89,23 +89,36 @@
 </style>
 
 <script>
-  document.addEventListener('click', async (e) => {
-  const btn = e.target.closest('.simple-quick-add');
-  if (!btn) return;
+document.addEventListener('click', async function (e) {
+  const button = e.target.closest('.quick-add-simple');
+  if (!button) return;
 
   e.preventDefault();
 
-  const variantId = btn.dataset.variantId;
+  const variantId = button.dataset.variantId;
+  if (!variantId) return;
 
-  await fetch('/cart/add.js', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      id: variantId,
-      quantity: 1
-    })
-  });
+  button.classList.add('loading');
 
-  btn.classList.add('added');
+  try {
+    await fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: variantId,
+        quantity: 1
+      })
+    });
+
+    button.classList.add('added');
+
+    // Optional: remove "added" after 1.5s
+    setTimeout(() => {
+      button.classList.remove('added');
+    }, 1500);
+
+  } catch (error) {
+    console.error('Quick add failed', error);
+  }
 });
 </script>
