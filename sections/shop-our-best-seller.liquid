@@ -62,7 +62,7 @@
                   </div>
                   <p class="shop-our-best-seller__tag">{{ product.type }}</p>
                   <p class="shop-our-best-seller__label">{{ product.title }}</p>
-                  <p class="shop-our-best-seller__label">{{ product.price | money }}</p>
+                  <p class="shop-our-best-seller__label">AED {{ product.price | money_without_currency }}</p>
                   </div>
                 {% endfor %}
               </div>
