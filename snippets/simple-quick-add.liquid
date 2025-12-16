@@ -9,22 +9,24 @@
 
 {% if variant.available %}
   <form
-    method="post"
-    action="/cart/add"
     class="simple-quick-add"
+    data-variant-id="{{ variant.id }}"
   >
-    <input type="hidden" name="id" value="{{ variant.id }}">
-    <input type="hidden" name="quantity" value="1">
-
     <button
-      type="submit"
+      type="button"
       class="simple-quick-add__button"
       aria-label="Add {{ product.title }} to cart"
     >
-      {{ 'icon-add-to-cart.svg' | inline_asset_content }}
+      <span class="icon icon--add">
+        {{ 'icon-add-to-cart.svg' | inline_asset_content }}
+      </span>
+      <span class="icon icon--check">
+        {{ 'icon-check.svg' | inline_asset_content }}
+      </span>
     </button>
   </form>
 {% endif %}
+
 
 <style>
   .product-image-slider {
