@@ -11,7 +11,7 @@
     {% for block in section.blocks %}
       {% assign collection = block.settings.category_collection %}
       {% if collection != blank %}
-        <a href="{{ collection.link }}" class="shop-by-theme__item" {{ block.shopify_attributes }}>
+        <a href="{{ collection.url }}" class="shop-by-theme__item" {{ block.shopify_attributes }}>
           {% if collection.image != blank %}
             <img
               src="{{ collection.image | image_url: width: 120, height: 120 }}"
