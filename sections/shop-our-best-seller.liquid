@@ -326,43 +326,37 @@
 .slider-prev { left: 8px; }
 .slider-next { right: 8px; }
 
-/* Fix for quick-add button */
-.product-image-slider {
-  position: relative;
-  width: 323px;
-  height: 324px;
-  overflow: visible; /* Changed from hidden to visible */
-}
-
-.shop-our-best-seller__item {
-  position: relative;
-  flex: 0 0 calc((100% - (16px * 3)) / 4);
-  box-sizing: border-box;
-}
-
-/* Ensure quick-add button appears */
-.shop-our-best-seller__item quick-add-bulk,
-.shop-our-best-seller__item .quick-add,
-.shop-our-best-seller__item .quick-add-button {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 15;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.shop-our-best-seller__item:hover quick-add-bulk,
-.shop-our-best-seller__item:hover .quick-add,
-.shop-our-best-seller__item:hover .quick-add-button {
-  opacity: 1;
-}
-
 /* Adjust slider arrows z-index */
 .slider-prev,
 .slider-next {
   z-index: 5; /* Reduced from 10 */
+}
+
+/* Force quick-add to display */
+.shop-our-best-seller__item quick-add-bulk,
+.shop-our-best-seller__item .quick-add,
+.shop-our-best-seller__item modal-opener,
+.shop-our-best-seller__item .quick-add__submit {
+  display: block !important;
+}
+
+/* If it's a button element */
+.shop-our-best-seller__item quick-add-bulk button,
+.shop-our-best-seller__item .quick-add button {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Position it properly */
+.shop-our-best-seller__item quick-add-bulk,
+.shop-our-best-seller__item .quick-add {
+  position: absolute !important;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  width: auto;
 }
 
 
