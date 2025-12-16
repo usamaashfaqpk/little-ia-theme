@@ -2472,12 +2472,29 @@
             "group_CAXKMY",
             "group_YwLpwz"
           ]
+        },
+        "button_CchxNh": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Read All Blogs",
+            "link": "shopify://blogs/news",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "text_case": "capitalize",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "text_94wLQw",
         "text_xJKKwd",
-        "group_pQh46E"
+        "group_pQh46E",
+        "button_CchxNh"
       ],
       "name": "t:names.multicolumn",
       "settings": {
