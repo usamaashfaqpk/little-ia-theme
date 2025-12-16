@@ -27,7 +27,6 @@
   position: relative;
 }
 
-/* Container */
 .quick-add-simple {
   position: absolute;
   bottom: 10px;
@@ -52,7 +51,6 @@
   transition: opacity .2s ease, transform .2s ease;
 }
 
-/* Show on hover */
 .product-image-slider:hover .quick-add-simple {
   opacity: 1;
   visibility: visible;
@@ -60,13 +58,11 @@
   transform: translateY(0);
 }
 
-/* Icon */
 .quick-add-simple__icon svg {
   width: 16px;
   height: 16px;
 }
 
-/* Text (Dawn-style expand) */
 .quick-add-simple__text {
   font-size: 14px;
   white-space: nowrap;
@@ -76,17 +72,16 @@
   transition: max-width .25s ease, opacity .2s ease;
 }
 
-/* Expand text on hover */
 .quick-add-simple:hover .quick-add-simple__text {
   max-width: 50px;
   opacity: 1;
 }
 
-/* Added state */
 .quick-add-simple.added {
   pointer-events: none;
   opacity: 0.6;
 }
+
 </style>
 
 <script>
