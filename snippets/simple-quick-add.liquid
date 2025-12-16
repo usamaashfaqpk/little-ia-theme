@@ -162,80 +162,72 @@ document.addEventListener('click', async function(e) {
     const cartResponse = await fetch('/cart.js');
     const cart = await cartResponse.json();
 
-    // Update all possible cart count elements
+    // Update cart count with multiple strategies
     const updateCartCount = (count) => {
-      // Dawn theme and common selectors
       const selectors = [
         '.cart-count-bubble',
-        '#cart-icon-bubble',
+        '#cart-icon-bubble', 
         '.header__cart-count',
         '[data-cart-count]',
-        '.cart-count',
-        'cart-count-bubble',
-        '#CartCount',
-        '.CartCount'
+        '.cart-count'
       ];
       
       selectors.forEach(selector => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(el => {
-          // Update text content
+        document.querySelectorAll(selector).forEach(el => {
           el.textContent = count;
-          el.innerText = count;
-          
-          // Update data attribute if exists
-          if (el.hasAttribute('data-cart-count')) {
-            el.setAttribute('data-cart-count', count);
-          }
-          
-          // Show/hide based on count
           if (count > 0) {
             el.classList.remove('hidden');
             el.removeAttribute('hidden');
-            el.style.display = '';
-          } else {
-            el.classList.add('hidden');
           }
         });
       });
     };
 
-    // Update the count
     updateCartCount(cart.item_count);
 
-    // Dispatch multiple events for theme compatibility
-    const events = [
-      new CustomEvent('cart:refresh', { bubbles: true, detail: { cart } }),
-      new CustomEvent('cart:updated', { bubbles: true, detail: { cart } }),
-      new CustomEvent('cart:change', { bubbles: true, detail: { cart } })
-    ];
-    
-    events.forEach(event => {
-      document.documentElement.dispatchEvent(event);
-      document.body.dispatchEvent(event);
-      document.dispatchEvent(event);
-    });
+    // **KEY FIX: Fetch cart sections to properly update theme components**
+    const sections = document.querySelectorAll('[id^="shopify-section"]');
+    const sectionIds = Array.from(sections)
+      .map(s => s.id.replace('shopify-section-', ''))
+      .filter(id => id.includes('header') || id.includes('cart'));
 
-    // Trigger cart drawer/notification
-    setTimeout(() => {
-      // Try to open cart drawer
-      const drawer = document.querySelector('cart-drawer');
-      if (drawer && typeof drawer.renderContents === 'function') {
-        drawer.renderContents(cart);
-      }
+    if (sectionIds.length > 0) {
+      const sectionsResponse = await fetch(`/cart/update.js?sections=${sectionIds.join(',')}`);
+      const sectionsData = await sectionsResponse.json();
       
-      // Try cart notification
+      // Update header section if returned
+      if (sectionsData.sections) {
+        Object.keys(sectionsData.sections).forEach(sectionId => {
+          const sectionElement = document.getElementById(`shopify-section-${sectionId}`);
+          if (sectionElement && sectionsData.sections[sectionId]) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = sectionsData.sections[sectionId];
+            const newContent = tempDiv.querySelector(`#shopify-section-${sectionId}`);
+            if (newContent) {
+              sectionElement.innerHTML = newContent.innerHTML;
+            }
+          }
+        });
+      }
+    }
+
+    // Dispatch events
+    document.dispatchEvent(new CustomEvent('cart:updated', { 
+      bubbles: true, 
+      detail: { cart } 
+    }));
+
+    // Open cart drawer/notification
+    setTimeout(() => {
+      const drawer = document.querySelector('cart-drawer');
       const notification = document.querySelector('cart-notification');
-      if (notification && typeof notification.renderContents === 'function') {
+      
+      if (drawer?.renderContents) {
+        drawer.renderContents(cart);
+      } else if (notification?.renderContents) {
         notification.renderContents(cart);
       }
-      
-      // Fallback: click cart icon
-      const cartLink = document.querySelector('.header__icon--cart');
-      if (cartLink) {
-        cartLink.click();
-      }
-    }, 100);
+    }, 150);
 
     // Visual feedback
     button.classList.remove('adding');
