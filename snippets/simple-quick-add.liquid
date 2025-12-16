@@ -6,8 +6,7 @@
   <span class="quick-add-simple__icon">
     {{ 'quick-add-icon.svg' | inline_asset_content }}
   </span>
-  <span class="quick-add-simple__text" data-product-handle="{{ product.handle }}"
-  aria-label="Add {{ product.title }} to cart">quick add</span>
+  <span class="quick-add-simple__text">quick add</span>
 </button>
 
 <style>
@@ -70,17 +69,13 @@
 }
 
 .quick-add-simple.added {
-  background: rgba(114, 149, 187, 1);
-  border-color: rgba(114, 149, 187, 1);
-  color: #ffffff;
-}
-
-.quick-add-simple__text.added {
-  color: #ffffff;
+  background: #4caf50;
+  border-color: #4caf50;
+  color: white;
 }
 
 .quick-add-simple.added svg {
-  fill: #ffffff;
+  fill: white;
 }
 
 @keyframes spin {
