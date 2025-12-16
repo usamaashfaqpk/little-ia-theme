@@ -142,6 +142,7 @@ document.addEventListener('click', async function(e) {
     });
 
     if (!addResponse.ok) throw new Error('Failed to add to cart');
+    const addedItem = await addResponse.json();
 
     // Animate fly-to-cart
     if (clone) {
@@ -158,99 +159,76 @@ document.addEventListener('click', async function(e) {
       }
     }
 
-    // Get updated cart
-    const cart = await fetch('/cart.js').then(r => r.json());
+    // Get updated cart data
+    const cartResponse = await fetch('/cart.js');
+    const cart = await cartResponse.json();
 
-    // Force update cart count - more aggressive approach
-    const forceUpdateCartCount = (count) => {
-      // All possible cart count selectors
+    // Update cart count with multiple strategies
+    const updateCartCount = (count) => {
       const selectors = [
-        'cart-count-bubble',
         '.cart-count-bubble',
-        '#cart-icon-bubble',
+        '#cart-icon-bubble', 
         '.header__cart-count',
         '[data-cart-count]',
-        '.cart-count',
-        '#CartCount',
-        '.CartCount',
-        'cart-drawer .cart-count-bubble'
+        '.cart-count'
       ];
       
       selectors.forEach(selector => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(el => {
-          // Update text in all possible ways
-          if (el.textContent !== undefined) el.textContent = count;
-          if (el.innerText !== undefined) el.innerText = count;
-          
-          // Update attributes
-          if (el.hasAttribute('data-cart-count')) {
-            el.setAttribute('data-cart-count', count);
-          }
-          
-          // Show/hide visibility
+        document.querySelectorAll(selector).forEach(el => {
+          el.textContent = count;
           if (count > 0) {
             el.classList.remove('hidden');
             el.removeAttribute('hidden');
-            el.style.display = '';
-            el.style.visibility = 'visible';
           }
         });
       });
-      
-      // Force update using MutationObserver trigger
-      const cartCountBubble = document.querySelector('.cart-count-bubble');
-      if (cartCountBubble) {
-        cartCountBubble.setAttribute('data-count', count);
-      }
     };
 
-    // Update immediately
-    forceUpdateCartCount(cart.item_count);
+    updateCartCount(cart.item_count);
 
-    // Trigger theme's native cart update mechanisms
-    fetch(window.Shopify.routes.root + 'cart.js')
-      .then(response => response.json())
-      .then(cartData => {
-        // Dispatch multiple event types for compatibility
-        const events = [
-          new CustomEvent('cart:refresh', { bubbles: true, detail: { cart: cartData } }),
-          new CustomEvent('cart:updated', { bubbles: true, detail: { cart: cartData } }),
-          new CustomEvent('cart:change', { bubbles: true, detail: { cart: cartData } }),
-          new Event('cart:build', { bubbles: true })
-        ];
-        
-        events.forEach(event => {
-          document.documentElement.dispatchEvent(event);
-          document.body.dispatchEvent(event);
-          document.dispatchEvent(event);
+    // **KEY FIX: Fetch cart sections to properly update theme components**
+    const sections = document.querySelectorAll('[id^="shopify-section"]');
+    const sectionIds = Array.from(sections)
+      .map(s => s.id.replace('shopify-section-', ''))
+      .filter(id => id.includes('header') || id.includes('cart'));
+
+    if (sectionIds.length > 0) {
+      const sectionsResponse = await fetch(`/cart/update.js?sections=${sectionIds.join(',')}`);
+      const sectionsData = await sectionsResponse.json();
+      
+      // Update header section if returned
+      if (sectionsData.sections) {
+        Object.keys(sectionsData.sections).forEach(sectionId => {
+          const sectionElement = document.getElementById(`shopify-section-${sectionId}`);
+          if (sectionElement && sectionsData.sections[sectionId]) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = sectionsData.sections[sectionId];
+            const newContent = tempDiv.querySelector(`#shopify-section-${sectionId}`);
+            if (newContent) {
+              sectionElement.innerHTML = newContent.innerHTML;
+            }
+          }
         });
+      }
+    }
 
-        // Update again after events
-        setTimeout(() => forceUpdateCartCount(cartData.item_count), 50);
-      });
+    // Dispatch events
+    document.dispatchEvent(new CustomEvent('cart:updated', { 
+      bubbles: true, 
+      detail: { cart } 
+    }));
 
-    // Handle cart drawer/notification
+    // Open cart drawer/notification
     setTimeout(() => {
       const drawer = document.querySelector('cart-drawer');
       const notification = document.querySelector('cart-notification');
       
-      if (drawer) {
-        if (typeof drawer.renderContents === 'function') {
-          drawer.renderContents(cart);
-        }
-        if (typeof drawer.open === 'function') {
-          drawer.open();
-        }
-      } else if (notification) {
-        if (typeof notification.renderContents === 'function') {
-          notification.renderContents(cart);
-        }
-        if (typeof notification.open === 'function') {
-          notification.open();
-        }
+      if (drawer?.renderContents) {
+        drawer.renderContents(cart);
+      } else if (notification?.renderContents) {
+        notification.renderContents(cart);
       }
-    }, 100);
+    }, 150);
 
     // Visual feedback
     button.classList.remove('adding');
