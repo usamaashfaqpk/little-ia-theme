@@ -32,7 +32,7 @@
             "gradient_direction": "to top",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 50,
+            "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {
@@ -70,10 +70,10 @@
                 "link": "",
                 "open_in_new_tab": false,
                 "placeholder": "",
-                "padding-block-start": 0,
+                "padding-block-start": 50,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 50,
+                "padding-inline-end": 50
               },
               "blocks": {
                 "jumbo_text_zwPKQD": {
@@ -152,7 +152,7 @@
                 "custom_width": 100,
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
-                "height": "fit",
+                "height": "fill",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -190,7 +190,7 @@
             "gradient_direction": "to top",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 50,
+            "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {
@@ -228,10 +228,10 @@
                 "link": "",
                 "open_in_new_tab": false,
                 "placeholder": "",
-                "padding-block-start": 0,
+                "padding-block-start": 50,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 50,
+                "padding-inline-end": 50
               },
               "blocks": {
                 "jumbo_text_mXnygA": {
@@ -348,7 +348,7 @@
             "gradient_direction": "to top",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 50,
+            "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {
@@ -386,10 +386,10 @@
                 "link": "",
                 "open_in_new_tab": false,
                 "placeholder": "",
-                "padding-block-start": 0,
+                "padding-block-start": 50,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 50,
+                "padding-inline-end": 50
               },
               "blocks": {
                 "jumbo_text_WpEcLd": {
