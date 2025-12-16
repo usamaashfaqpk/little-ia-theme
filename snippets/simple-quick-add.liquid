@@ -67,3 +67,25 @@
     height: 16px;
   }
 </style>
+
+<script>
+  document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.simple-quick-add');
+  if (!btn) return;
+
+  e.preventDefault();
+
+  const variantId = btn.dataset.variantId;
+
+  await fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      id: variantId,
+      quantity: 1
+    })
+  });
+
+  btn.classList.add('added');
+});
+</script>
