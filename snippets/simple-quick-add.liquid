@@ -93,6 +93,7 @@
 <script>
 document.addEventListener('click', async function(e) {
   const button = e.target.closest('.quick-add-simple');
+  const text = e.target.closest('.quick-add-simple__text')
   if (!button) return;
 
   e.preventDefault();
