@@ -14,39 +14,26 @@
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
-        "group_H6VpwJ": {
-          "type": "group",
+        "text_Wge3Bq": {
+          "type": "text",
+          "name": "t:names.heading",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 6,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
+            "text": "<h2>New arrivals</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "font_weight": "400",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -56,15 +43,32 @@
         }
       },
       "block_order": [
-        "group_H6VpwJ"
+        "text_Wge3Bq"
+      ],
+      "custom_css": [
+        ".footer-content {background-color: #f8f3ed;}"
       ],
       "name": "t:names.footer",
       "settings": {
-        "section_width": "page-width",
+        "section_width": "full-width",
         "gap": 20,
         "color_scheme": "scheme-1",
         "padding-block-start": 30,
         "padding-block-end": 30
+      }
+    },
+    "divider_UGBF69": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "",
+        "section_width": "full-width",
+        "thickness": 2,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "footer_utilities_jLGE8U": {
@@ -85,7 +89,7 @@
       ],
       "custom_css": [
         ".utilities {display: flex; justify-content: center; background-color: #f8f3ed; align-items: center;}",
-        ".footer-utilities__text {color: #1D425A}"
+        ".footer-utilities__text {color: #1d425a;}"
       ],
       "name": "t:names.utilities",
       "settings": {
@@ -100,6 +104,7 @@
   },
   "order": [
     "footer_m9NzUG",
+    "divider_UGBF69",
     "footer_utilities_jLGE8U"
   ]
 }
