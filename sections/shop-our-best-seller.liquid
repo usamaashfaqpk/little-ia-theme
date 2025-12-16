@@ -30,7 +30,7 @@
     <!-- Panels -->
     <div class="shop-our-best-seller__panels">
       {% for block in section.blocks %}
-        {% assign collection = collections[block.settings.collection_list] %}
+        {% assign collection = collections[block.settings.collection] %}
 
         <div
           class="shop-our-best-seller__panel{% if forloop.first %} is-active{% endif %}"
