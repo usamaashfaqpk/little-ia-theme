@@ -3,7 +3,7 @@
   File: sections/shop-our-best-seller-tabs.liquid
 {% endcomment %}
 
-<section class="shop-our-best-seller">
+{% comment %} <section class="shop-our-best-seller">
   <div class="page-width">
     {% if section.settings.heading != blank %}
       <h2 class="shop-our-best-seller__heading font-sacramento">{{ section.settings.heading }}</h2>
@@ -134,7 +134,119 @@
       {% endfor %}
     </div>
   </div>
+</section> {% endcomment %}
+
+{% comment %}
+  SECTION: Shop by Age – Collection Tabs with Quick Add
+  File: sections/shop-our-best-seller-tabs.liquid
+{% endcomment %}
+
+<section class="shop-our-best-seller">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="shop-our-best-seller__heading font-sacramento">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p class="shop-our-best-seller__subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    <!-- Tabs -->
+    <div class="shop-our-best-seller__tabs" role="tablist">
+      {% for block in section.blocks %}
+        <button
+          class="shop-our-best-seller__tab{% if forloop.first %} is-active{% endif %}"
+          data-tab="tab-{{ block.id }}"
+          role="tab"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.tab_title }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- Panels -->
+    <div class="shop-our-best-seller__panels">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+        <div
+          class="shop-our-best-seller__panel{% if forloop.first %} is-active{% endif %}"
+          id="tab-{{ block.id }}"
+          role="tabpanel"
+        >
+          {% if collection != blank %}
+            <button class="shop-our-best-seller__nav shop-our-best-seller__nav--prev" aria-label="Previous">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+
+            <div class="shop-our-best-seller__viewport">
+              <div class="shop-our-best-seller__grid">
+                {% for product in collection.products %}
+                  <div class="shop-our-best-seller__item">
+                    <div class="product-image-slider">
+                      {% if product.images.size > 1 %}
+                        <div class="slider-wrapper">
+                          {% for image in product.images %}
+                            <a href="{{ product.url }}" class="slider-slide {% if forloop.first %}active{% endif %}">
+                              {{ image | image_url: width: 323, height: 324 | image_tag }}
+                            </a>
+                          {% endfor %}
+
+                          <!-- Slider arrows -->
+                          <button class="slider-prev" aria-label="Previous">&lt;</button>
+                          <button class="slider-next" aria-label="Next">&gt;</button>
+                        </div>
+                      {% else %}
+                        <a href="{{ product.url }}" class="shop-our-best-seller__image">
+                          {{ product.featured_image | image_url: width: 323, height: 324 | image_tag }}
+                        </a>
+                      {% endif %}
+
+                      <!-- Quick Add Button -->
+                      {% render 'quick-add', product: product, section_id: section.id, block: block %}
+                    </div>
+
+                    <!-- Product info -->
+                    <p class="shop-our-best-seller__tag">{{ product.type }}</p>
+                    <p class="shop-our-best-seller__label">{{ product.title }}</p>
+                    <p class="shop-our-best-seller__price">
+                      AED {{ product.price | money_without_currency }}
+                      {% if product.compare_at_price > product.price %}
+                        <span class="original-price">AED {{ product.compare_at_price | money_without_currency }}</span>
+                        {% assign discount = product.compare_at_price | minus: product.price %}
+                        {% assign discount_percent = discount | divided_by: product.compare_at_price | times: 100 | round %}
+                        <span class="discount-percent">{{ discount_percent }}% OFF</span>
+                      {% endif %}
+                    </p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <button class="shop-our-best-seller__nav shop-our-best-seller__nav--next" aria-label="Next">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+
+            {% if block.settings.button_label != blank %}
+              <div class="shop-our-best-seller__cta">
+                <a href="{{ collection.url }}" class="button-secondary">
+                  {{ block.settings.button_label | default: section.settings.default_button_label }}
+                </a>
+              </div>
+            {% endif %}
+          {% else %}
+            <p>No collection selected.</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
+
 
 <style>
   .shop-our-best-seller {
