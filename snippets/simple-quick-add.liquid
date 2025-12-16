@@ -29,43 +29,36 @@
 
 
 <style>
-  .product-image-slider {
-    position: relative;
-  }
-
-  .simple-quick-add {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    transform: translateY(6px);
-    z-index: 20;
-  }
-
-  .product-image-slider:hover .simple-quick-add {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
-    transform: translateY(0);
-  }
-
   .simple-quick-add__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    cursor: pointer;
-  }
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
 
-  .simple-quick-add__button svg {
-    width: 16px;
-    height: 16px;
-  }
+.simple-quick-add__button .icon {
+  position: absolute;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.icon--check {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.simple-quick-add__button.is-added .icon--add {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.simple-quick-add__button.is-added .icon--check {
+  opacity: 1;
+  transform: scale(1);
+}
 </style>
