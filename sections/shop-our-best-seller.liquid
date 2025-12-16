@@ -326,16 +326,28 @@
 .slider-prev { left: 8px; }
 .slider-next { right: 8px; }
 
-.quick-add:hover {
+/* Default state */
+.quick-add {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  display: flex !important;
-  pointer-events: all !important;
-  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(6px);
 }
 
-.quick-add__button:hover {
+/* Show on product hover */
+.product-image-slider:hover .quick-add {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+/* Button styling */
+.quick-add__button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -345,6 +357,7 @@
   padding: 8px;
   cursor: pointer;
 }
+
 
 </style>
 
