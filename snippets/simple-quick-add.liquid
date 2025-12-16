@@ -1,31 +1,23 @@
 {% comment %}
-  Simple Quick Add
-  - Adds first available variant to cart
-  - No modal
-  - No JS
+  Fixed Quick Add
+  - Adds exactly 1 item to cart
+  - Dawn-style hover
+  - Updates header count
 {% endcomment %}
 
-{% assign variant = product.selected_or_first_available_variant %}
-
-{% if variant.available %}
-  <button
-    class="quick-add-simple"
-    data-variant-id="{{ variant.id }}"
-    aria-label="Add {{ product.title }} to cart"
-  >
-    <span class="quick-add-simple__icon">
-      {{ 'icon-add-to-cart.svg' | inline_asset_content }}
-    </span>
-    <span class="quick-add-simple__text">Add</span>
-  </button>
-{% endif %}
-
-
+<button
+  class="quick-add-simple"
+  data-product-handle="{{ product.handle }}"
+  aria-label="Add {{ product.title }} to cart"
+>
+  <span class="quick-add-simple__icon">
+    {{ 'icon-add-to-cart.svg' | inline_asset_content }}
+  </span>
+  <span class="quick-add-simple__text">Add</span>
+</button>
 
 <style>
-  .product-image-slider {
-  position: relative;
-}
+.product-image-slider { position: relative; }
 
 .quick-add-simple {
   position: absolute;
@@ -58,10 +50,7 @@
   transform: translateY(0);
 }
 
-.quick-add-simple__icon svg {
-  width: 16px;
-  height: 16px;
-}
+.quick-add-simple__icon svg { width: 16px; height: 16px; }
 
 .quick-add-simple__text {
   font-size: 14px;
@@ -81,40 +70,49 @@
   pointer-events: none;
   opacity: 0.6;
 }
-
 </style>
 
 <script>
-document.addEventListener('click', async function (e) {
+document.addEventListener('click', async function(e) {
   const button = e.target.closest('.quick-add-simple');
   if (!button) return;
 
   e.preventDefault();
 
-  const variantId = button.dataset.variantId;
-  if (!variantId) return;
+  const handle = button.dataset.productHandle;
+  if (!handle) return;
 
   button.classList.add('loading');
 
   try {
+    // Fetch product JSON to get first available variant
+    const productData = await fetch(`/products/${handle}.js`).then(r => r.json());
+    const variant = productData.variants.find(v => v.available);
+    if (!variant) {
+      console.warn('No available variant for', handle);
+      return;
+    }
+
+    // Add exactly 1 to cart
     await fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id: variantId,
-        quantity: 1
-      })
+      body: JSON.stringify({ id: variant.id, quantity: 1 })
     });
 
+    // Optional: visual feedback
     button.classList.add('added');
+    setTimeout(() => button.classList.remove('added'), 1500);
 
-    // Optional: remove "added" after 1.5s
-    setTimeout(() => {
-      button.classList.remove('added');
-    }, 1500);
+    // Update cart count in header
+    const cartCountEls = document.querySelectorAll('.cart-count-bubble, .header__cart-count');
+    if (cartCountEls.length) {
+      const cart = await fetch('/cart.js').then(r => r.json());
+      cartCountEls.forEach(el => el.textContent = cart.item_count);
+    }
 
-  } catch (error) {
-    console.error('Quick add failed', error);
+  } catch(err) {
+    console.error('Quick add failed', err);
   }
 });
 </script>
