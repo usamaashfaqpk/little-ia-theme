@@ -59,6 +59,13 @@
   pointer-events: none;
   opacity: 0.6;
 }
+
+.quick-add-fly {
+  position: fixed;
+  z-index: 1000;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.6s ease;
+  pointer-events: none;
+}
 </style>
 
 <script>
@@ -67,41 +74,64 @@ document.addEventListener('click', async function(e) {
   if (!button) return;
 
   e.preventDefault();
-  e.stopImmediatePropagation(); // Prevent duplicate triggers
+  e.stopImmediatePropagation();
 
-  if (button.disabled) return; // Prevent double clicks
+  if (button.disabled) return;
   button.disabled = true;
 
   const handle = button.dataset.productHandle;
   if (!handle) return;
 
-  button.classList.add('loading');
-
   try {
-    // Fetch product JSON to get first available variant
+    // Get product JSON
     const productData = await fetch(`/products/${handle}.js`).then(r => r.json());
     const variant = productData.variants.find(v => v.available);
-    if (!variant) {
-      console.warn('No available variant for', handle);
-      button.disabled = false;
-      return;
+    if (!variant) { button.disabled = false; return; }
+
+    // Get product image
+    const imgEl = button.closest('.product-image-slider')?.querySelector('img');
+    let clone;
+    if (imgEl) {
+      clone = imgEl.cloneNode(true);
+      clone.classList.add('quick-add-fly');
+      clone.style.width = imgEl.offsetWidth + 'px';
+      clone.style.height = imgEl.offsetHeight + 'px';
+      const rect = imgEl.getBoundingClientRect();
+      clone.style.top = rect.top + 'px';
+      clone.style.left = rect.left + 'px';
+      document.body.appendChild(clone);
     }
 
-    // Add exactly 1 to cart
+    // Add 1 item
     await fetch('/cart/add.js', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type':'application/json'},
       body: JSON.stringify({ id: variant.id, quantity: 1 })
     });
 
-    // Optional: visual feedback
+    // Animate fly-to-cart
+    if (clone) {
+      const cartIcon = document.querySelector('.header__cart, .cart-count-bubble');
+      if (cartIcon) {
+        const rect = cartIcon.getBoundingClientRect();
+        requestAnimationFrame(() => {
+          clone.style.transform = `translate(${rect.left - clone.getBoundingClientRect().left}px, ${rect.top - clone.getBoundingClientRect().top}px) scale(0.2)`;
+          clone.style.opacity = 0;
+        });
+        setTimeout(() => clone.remove(), 600);
+      } else {
+        clone.remove();
+      }
+    }
+
+    // Visual feedback
     button.classList.add('added');
     setTimeout(() => {
       button.classList.remove('added');
-      button.disabled = false; // Re-enable after animation
+      button.disabled = false;
     }, 1500);
 
-    // Update cart count in header
+    // Update header cart count instantly
     const cartCountEls = document.querySelectorAll('.cart-count-bubble, .header__cart-count');
     if (cartCountEls.length) {
       const cart = await fetch('/cart.js').then(r => r.json());
