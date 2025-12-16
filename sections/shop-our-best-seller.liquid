@@ -62,7 +62,14 @@
                   </div>
                   <p class="shop-our-best-seller__tag">{{ product.type }}</p>
                   <p class="shop-our-best-seller__label">{{ product.title }}</p>
-                  <p class="shop-our-best-seller__label">AED {{ product.price | money_without_currency }}</p>
+                  <p class="shop-our-best-seller__label">
+                    AED {{ product.price | money_without_currency }}
+                    {% if product.compare_at_price > product.price %}
+                      <span class="original-price" style="text-decoration: line-through; margin-left: 8px; color: #888;">
+                        AED {{ product.compare_at_price | money_without_currency }}
+                      </span>
+                    {% endif %}
+                  </p>
                   </div>
                 {% endfor %}
               </div>
