@@ -3422,6 +3422,42 @@
     "shop_by_theme_jxfzK3": {
       "type": "shop-by-theme",
       "blocks": {
+        "category_WiPJkc": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_ydHAcN": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_c66hWm": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_NkamL7": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_EbBm3U": {
+          "type": "category",
+          "settings": {
+            "category_collection": "automated-collection"
+          }
+        },
+        "category_7jDRgH": {
+          "type": "category",
+          "settings": {
+            "category_collection": "all"
+          }
+        },
         "category_kEmYLn": {
           "type": "category",
           "settings": {
@@ -3429,12 +3465,6 @@
           }
         },
         "category_dWdfVe": {
-          "type": "category",
-          "settings": {
-            "category_collection": "all"
-          }
-        },
-        "category_7jDRgH": {
           "type": "category",
           "settings": {
             "category_collection": "all"
@@ -3466,9 +3496,14 @@
         }
       },
       "block_order": [
+        "category_WiPJkc",
+        "category_ydHAcN",
+        "category_c66hWm",
+        "category_NkamL7",
+        "category_EbBm3U",
+        "category_7jDRgH",
         "category_kEmYLn",
         "category_dWdfVe",
-        "category_7jDRgH",
         "category_U7Y3XW",
         "category_i6MUVr",
         "category_tRqAbz",
