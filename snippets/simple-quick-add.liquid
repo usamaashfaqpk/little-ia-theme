@@ -234,9 +234,11 @@ document.addEventListener('click', async function(e) {
     // Visual feedback
     button.classList.remove('adding');
     button.classList.add('added');
+    text.classList.add('added');
     
     setTimeout(() => {
       button.classList.remove('added');
+      text.classList.remove('added');
       button.disabled = false;
     }, 1500);
 
