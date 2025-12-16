@@ -1508,7 +1508,7 @@
         "group_KxteHb",
         "group_NdcY69"
       ],
-      "name": "t:names.split_showcase",
+      "name": "side by side",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
@@ -2333,7 +2333,7 @@
         "group_yPA8T7",
         "group_zQcd7z"
       ],
-      "name": "t:names.split_showcase",
+      "name": "From Quote",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
@@ -2511,7 +2511,7 @@
         "group_MXfzrK",
         "group_e4hJHP"
       ],
-      "name": "t:names.split_showcase",
+      "name": "Iconic Brands",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
