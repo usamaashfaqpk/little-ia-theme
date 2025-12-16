@@ -435,6 +435,34 @@
 
 .slider-prev { left: 8px; }
 .slider-next { right: 8px; }
+
+.product-image-slider {
+  position: relative; /* relative parent for absolute Quick Add */
+}
+
+.quick-add {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex !important;
+  pointer-events: all !important;
+  z-index: 10;
+}
+
+.quick-add__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.quick-add__button:hover {
+  background-color: #f0f0f0;
+}
 </style>
 
 <script>
