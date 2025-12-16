@@ -174,8 +174,12 @@
     font-size: 20px;
     text-align: left;
     font-weight: 500 !important;
-    pointer-events: none;
     width: 100%;
+
+    white-space: nowrap;       /* prevent text from wrapping */
+    overflow: hidden;          /* hide overflow */
+    text-overflow: ellipsis;   /* show "..." at the end */
+    pointer-events: none;
   }
   .shop-our-best-seller__cta {
     width: 100%;
