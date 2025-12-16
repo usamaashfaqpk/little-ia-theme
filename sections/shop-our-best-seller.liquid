@@ -362,6 +362,30 @@
     const firstPanel = document.querySelector('.shop-our-best-seller__panel.is-active');
     if (firstPanel) updateArrows(firstPanel);
   })();
+
+  document.addEventListener('DOMContentLoaded', function() {
+  const sliders = document.querySelectorAll('.product-image-slider');
+  
+  sliders.forEach(slider => {
+    const slides = slider.querySelectorAll('.slider-slide');
+    let current = 0;
+
+    const showSlide = index => {
+      slides.forEach(s => s.classList.remove('active'));
+      slides[index].classList.add('active');
+    }
+
+    slider.querySelector('.slider-prev')?.addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+
+    slider.querySelector('.slider-next')?.addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+  });
+});
 </script>
 
 {% schema %}
