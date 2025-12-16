@@ -60,7 +60,7 @@
                       {{ product.featured_image | image_url: width: 323, height: 324 | image_tag }}
                     </a>
                   </div>
-                  <p class="shop-our-best-seller__label">{{ product.title }}</p>
+                  <p class="shop-our-best-seller__label">{{ product.title }} {{ product.type }}</p>
                   </div>
                 {% endfor %}
               </div>
