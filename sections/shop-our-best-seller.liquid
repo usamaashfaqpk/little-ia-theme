@@ -74,8 +74,8 @@
                       {% assign compare_price = product.compare_at_price | money_without_currency %}
                       {% assign discount = compare_price | minus: price %}
                       {% assign discount_percent = discount | divided_by: compare_price | times: 100 | round %}
-                      <span class="discount-percent" style="background-color:#FDF8E7; color: #1D425A; font-weight: 400; margin-left: 8px;">
-                        ({{ discount_percent }}% OFF)
+                      <span class="discount-percent" style="background-color:#FDF8E7; color: #1D425A; font-weight: 400; margin-left: 8px; border-radius: 70px;">
+                        {{ discount_percent }}%
                       </span>
                     {% endif %}
                   </p>
