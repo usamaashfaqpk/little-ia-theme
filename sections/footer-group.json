@@ -264,7 +264,7 @@
               },
               "blocks": {}
             },
-            "menu_kQGikh": {
+            "menu_JnXLXk": {
               "type": "menu",
               "name": "t:names.menu",
               "settings": {
@@ -288,7 +288,7 @@
           },
           "block_order": [
             "text_XKNYLw",
-            "menu_kQGikh"
+            "menu_JnXLXk"
           ]
         },
         "group_zXAYDE": {
@@ -452,7 +452,7 @@
               },
               "blocks": {}
             },
-            "menu_XzNBJd": {
+            "menu_89hrPy": {
               "type": "menu",
               "name": "t:names.menu",
               "settings": {
@@ -476,7 +476,7 @@
           },
           "block_order": [
             "text_MagYWc",
-            "menu_XzNBJd"
+            "menu_89hrPy"
           ]
         }
       },
