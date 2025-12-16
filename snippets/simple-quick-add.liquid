@@ -1,10 +1,3 @@
-{% comment %}
-  Fixed Quick Add
-  - Adds exactly 1 item to cart
-  - Dawn-style hover
-  - Updates header count
-{% endcomment %}
-
 <button
   class="quick-add-simple"
   data-product-handle="{{ product.handle }}"
@@ -24,21 +17,17 @@
   bottom: 10px;
   right: 10px;
   z-index: 20;
-
   display: flex;
   align-items: center;
   gap: 6px;
-
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 999px;
   padding: 8px 10px;
-
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-
   transform: translateY(6px);
   transition: opacity .2s ease, transform .2s ease;
 }
@@ -78,6 +67,10 @@ document.addEventListener('click', async function(e) {
   if (!button) return;
 
   e.preventDefault();
+  e.stopImmediatePropagation(); // Prevent duplicate triggers
+
+  if (button.disabled) return; // Prevent double clicks
+  button.disabled = true;
 
   const handle = button.dataset.productHandle;
   if (!handle) return;
@@ -90,6 +83,7 @@ document.addEventListener('click', async function(e) {
     const variant = productData.variants.find(v => v.available);
     if (!variant) {
       console.warn('No available variant for', handle);
+      button.disabled = false;
       return;
     }
 
@@ -102,7 +96,10 @@ document.addEventListener('click', async function(e) {
 
     // Optional: visual feedback
     button.classList.add('added');
-    setTimeout(() => button.classList.remove('added'), 1500);
+    setTimeout(() => {
+      button.classList.remove('added');
+      button.disabled = false; // Re-enable after animation
+    }, 1500);
 
     // Update cart count in header
     const cartCountEls = document.querySelectorAll('.cart-count-bubble, .header__cart-count');
@@ -113,6 +110,7 @@ document.addEventListener('click', async function(e) {
 
   } catch(err) {
     console.error('Quick add failed', err);
+    button.disabled = false;
   }
 });
 </script>
