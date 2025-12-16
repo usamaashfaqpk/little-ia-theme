@@ -82,8 +82,8 @@
                       </a>
                     {% endif %}
 
-                    {% comment %} {% render 'quick-add', product: product, section_id: section.id, block: block %} {% endcomment %}
-                     {% render 'simple-quick-add', product: product %}
+                    {% render 'quick-add', product: product, section_id: section.id, block: block %}
+                     {% comment %} {% render 'simple-quick-add', product: product %} {% endcomment %}
                   </div>
                   <p class="shop-our-best-seller__tag">{{ product.type }}</p>
                   <p class="shop-our-best-seller__label">{{ product.title }}</p>
