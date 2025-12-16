@@ -1,6 +1,441 @@
+{% doc %}
+  @prompt
+    Create a parent container block that accepts child blocks using CSS Grid layout. This should work exactly like a group block but use display: grid instead of flexbox. Include these grid settings: grid-template-columns with responsive options (mobile, tablet, desktop), column gap, row gap, justify-items (start, center, end, stretch), align-items (start, center, end, stretch), grid-auto-flow, and padding controls. The block must support nested child blocks and appear in the theme editor block picker. Ensure it has proper schema settings to allow adding unlimited child blocks inside it.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-grid-container-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-grid-container-{{ ai_gen_id }}__inner {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    column-gap: {{ block.settings.column_gap_mobile }}px;
+    row-gap: {{ block.settings.row_gap_mobile }}px;
+    justify-items: {{ block.settings.justify_items }};
+    align-items: {{ block.settings.align_items }};
+    grid-auto-flow: {{ block.settings.grid_auto_flow }};
+    padding-top: {{ block.settings.padding_top_mobile }}px;
+    padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+    padding-left: {{ block.settings.padding_left_mobile }}px;
+    padding-right: {{ block.settings.padding_right_mobile }}px;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-grid-container-{{ ai_gen_id }}__inner {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+      column-gap: {{ block.settings.column_gap_tablet }}px;
+      row-gap: {{ block.settings.row_gap_tablet }}px;
+      padding-top: {{ block.settings.padding_top_tablet }}px;
+      padding-bottom: {{ block.settings.padding_bottom_tablet }}px;
+      padding-left: {{ block.settings.padding_left_tablet }}px;
+      padding-right: {{ block.settings.padding_right_tablet }}px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .ai-grid-container-{{ ai_gen_id }}__inner {
+      grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+      column-gap: {{ block.settings.column_gap_desktop }}px;
+      row-gap: {{ block.settings.row_gap_desktop }}px;
+      padding-top: {{ block.settings.padding_top_desktop }}px;
+      padding-bottom: {{ block.settings.padding_bottom_desktop }}px;
+      padding-left: {{ block.settings.padding_left_desktop }}px;
+      padding-right: {{ block.settings.padding_right_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<grid-container-{{ ai_gen_id }} class="ai-grid-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-grid-container-{{ ai_gen_id }}__inner">
+    {% for block in blocks %}
+      {{ block }}
+    {% endfor %}
+  </div>
+</grid-container-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class GridContainer{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.observeChildBlocks();
+      }
+
+      observeChildBlocks() {
+        const observer = new MutationObserver(() => {
+          this.updateGridItems();
+        });
+
+        observer.observe(this, {
+          childList: true,
+          subtree: true
+        });
+
+        this.updateGridItems();
+      }
+
+      updateGridItems() {
+        const gridContainer = this.querySelector('.ai-grid-container-{{ ai_gen_id }}__inner');
+        if (gridContainer) {
+          const items = gridContainer.children;
+          Array.from(items).forEach((item) => {
+            if (!item.style.display) {
+              item.style.display = 'block';
+            }
+          });
+        }
+      }
+    }
+
+    customElements.define('grid-container-{{ ai_gen_id }}', GridContainer{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Grid container",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Grid columns"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Mobile columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "Tablet columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Grid spacing"
+    },
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "label": "Mobile column gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "column_gap_tablet",
+      "label": "Tablet column gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "column_gap_desktop",
+      "label": "Desktop column gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "row_gap_mobile",
+      "label": "Mobile row gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "row_gap_tablet",
+      "label": "Tablet row gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "row_gap_desktop",
+      "label": "Desktop row gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Grid alignment"
+    },
+    {
+      "type": "select",
+      "id": "justify_items",
+      "label": "Justify items",
+      "options": [
+        {
+          "value": "start",
+          "label": "Start"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "End"
+        },
+        {
+          "value": "stretch",
+          "label": "Stretch"
+        }
+      ],
+      "default": "stretch"
+    },
+    {
+      "type": "select",
+      "id": "align_items",
+      "label": "Align items",
+      "options": [
+        {
+          "value": "start",
+          "label": "Start"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "End"
+        },
+        {
+          "value": "stretch",
+          "label": "Stretch"
+        }
+      ],
+      "default": "stretch"
+    },
+    {
+      "type": "select",
+      "id": "grid_auto_flow",
+      "label": "Grid auto flow",
+      "options": [
+        {
+          "value": "row",
+          "label": "Row"
+        },
+        {
+          "value": "column",
+          "label": "Column"
+        },
+        {
+          "value": "dense",
+          "label": "Dense"
+        },
+        {
+          "value": "row dense",
+          "label": "Row dense"
+        },
+        {
+          "value": "column dense",
+          "label": "Column dense"
+        }
+      ],
+      "default": "row"
+    },
+    {
+      "type": "header",
+      "content": "Mobile padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Tablet padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tablet",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tablet",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_tablet",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_tablet",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Desktop padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "image"
+    },
+    {
+      "type": "text"
+    },
+    {
+      "type": "heading"
+    },
+    {
+      "type": "button"
+    },
+    {
+      "type": "video"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grid container"
+    }
+  ]
+}
 {% endschema %}
