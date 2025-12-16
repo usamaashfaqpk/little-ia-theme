@@ -1051,14 +1051,6 @@
     "shop_by_age_tabs_HDti99": {
       "type": "shop-by-age-tabs",
       "blocks": {
-        "tab_JeDKQa": {
-          "type": "tab",
-          "settings": {
-            "tab_title": "All Ages",
-            "collection": "frontpage",
-            "button_label": "Shop All Ages"
-          }
-        },
         "tab_eikBbP": {
           "type": "tab",
           "settings": {
@@ -1066,11 +1058,19 @@
             "collection": "automated-collection",
             "button_label": "Shop All 3 - 5 Years"
           }
+        },
+        "tab_JeDKQa": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "All Ages",
+            "collection": "frontpage",
+            "button_label": "Shop All Ages"
+          }
         }
       },
       "block_order": [
-        "tab_JeDKQa",
-        "tab_eikBbP"
+        "tab_eikBbP",
+        "tab_JeDKQa"
       ],
       "name": "Shop by Age – Tabs",
       "settings": {
@@ -3453,38 +3453,93 @@
               },
               "blocks": {}
             },
-            "product_description_TNCUPF": {
-              "type": "product-description",
-              "name": "t:names.product_description",
+            "group_p637Yh": {
+              "type": "group",
+              "name": "t:names.group",
               "settings": {
-                "text": "<p>You can unsubscribe anytime. For more details read our Privacy Policy</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 0,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {}
+              "blocks": {
+                "product_description_ViBwrx": {
+                  "type": "product-description",
+                  "name": "t:names.product_description",
+                  "settings": {
+                    "text": "<p>You can unsubscribe anytime. For more details read our</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "footer_policy_list_E7gEt9": {
+                  "type": "footer-policy-list",
+                  "name": "t:names.policy_list",
+                  "settings": {
+                    "font_size": "0.75rem",
+                    "case": "none"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "product_description_ViBwrx",
+                "footer_policy_list_E7gEt9"
+              ]
             }
           },
           "block_order": [
             "text_HkeXrh",
             "text_RTTR6p",
             "email_signup_tTGWCb",
-            "product_description_TNCUPF"
+            "group_p637Yh"
           ]
         }
       },
