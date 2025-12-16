@@ -327,10 +327,12 @@
 .slider-next { right: 8px; }
 
 .quick-add:hover {
-  display: flex;
   position: absolute;
   bottom: 10px;
   right: 10px;
+  display: flex !important;
+  pointer-events: all !important;
+  z-index: 10;
 }
 
 .quick-add__button: hover {
