@@ -82,22 +82,7 @@
                       </a>
                     {% endif %}
 
-                    {% comment %} {% render 'quick-add', product: product, section_id: section.id %} {% endcomment %}
-                     <button id="" type="submit" name="add" ref="addToCartButton" on:click="/handleClick" class="button button quick-add__button quick-add__button--add">
-                        <span class="add-to-cart-text"> 
-                          <span class="svg-wrapper add-to-cart-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--icon-stroke-width)" d="M16.608 9.421V6.906H3.392v8.016c0 .567.224 1.112.624 1.513.4.402.941.627 1.506.627H8.63M8.818 3h2.333c.618 0 1.212.247 1.649.686a2.35 2.35 0 0 1 .683 1.658v1.562H6.486V5.344c0-.622.246-1.218.683-1.658A2.33 2.33 0 0 1 8.82 3"></path><path stroke="currentColor" stroke-linecap="round" stroke-width="var(--icon-stroke-width)" d="M14.608 12.563v5m2.5-2.5h-5"></path></svg>
-                        </span>
-                            
-                        <span class="add-to-cart-text__content is-visually-hidden-mobile">Add</span>
-                          </span>
-                          <span aria-hidden="true" class="add-to-cart-text--added">
-                            <span class="svg-wrapper add-to-cart-icon--added"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-checkmark">
-                      <path d="M4.75439 10.7485L7.68601 14.5888C7.79288 14.7288 7.84632 14.7988 7.91174 14.8242C7.96907 14.8466 8.03262 14.8469 8.09022 14.8253C8.15596 14.8007 8.21026 14.7314 8.31886 14.5927L15.2475 5.74658" stroke="currentColor" stroke-width="var(--icon-stroke-width)" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
-                      </span>
-                            <span class="is-visually-hidden-mobile">Added</span>
-                          </span>
-                        </button>
+                    {% render 'quick-add', product: product, section_id: section.id, block: block %}
                   </div>
                   <p class="shop-our-best-seller__tag">{{ product.type }}</p>
                   <p class="shop-our-best-seller__label">{{ product.title }}</p>
@@ -338,6 +323,30 @@
 
 .slider-prev { left: 8px; }
 .slider-next { right: 8px; }
+
+.quick-add {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex !important;
+  pointer-events: all !important;
+  z-index: 10;
+}
+
+.quick-add__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.quick-add__button:hover {
+  background-color: #f0f0f0;
+}
 </style>
 
 <script>
